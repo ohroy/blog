@@ -4,13 +4,14 @@ import {
 import Vue from 'vue'
 const github = new EventEmitter()
 const itemsCache = Object.create(null);
+const githubURl = 'https://api.github.com/repos/rozbo/blog/issues';
 export default github
 
 
 
 github.getList = function() {
     return new Promise((resolve, reject) => {
-        Vue.http.get('https://api.github.com/repos/jamesfancy/jamesfancy.github.io/issues').then(
+        Vue.http.get(githubURl).then(
             (response) => {
                 resolve(response.body);
             }, (response) => {
@@ -26,7 +27,7 @@ github.getDetail = id => {
             console.log("bycache");
             resolve(itemsCache[id])
         } else {
-            Vue.http.get('https://api.github.com/repos/jamesfancy/jamesfancy.github.io/issues/' + id).then(
+            Vue.http.get(githubURl + '/' + id).then(
                 (response) => {
                     itemsCache[id] = response.body;
                     console.log("by get");
