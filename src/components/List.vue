@@ -1,19 +1,12 @@
 <template>
 <div class="container">
-    <div class="heading">
-        <h1 class="title">博文列表</h1>
-        <h2 class="subtitle">
-到如今，年复一年，我不能停止怀念，怀念你，怀念从前。
-      </h2>
-    </div>
-    <br/>
     <div class="content">
-        <div v-if="!items.length">
+        <div v-if="!items.length" class="has-text-centered">
             <span class="icon is-large">
   <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
 </span>
         </div>
-        <div v-else class="box">
+        <div v-else class="">
             <article class="media" v-for="item in items">
                 <figure class="media-left">
                     <p class="image is-64x64">
@@ -54,6 +47,9 @@ export default {
         return {
             items: []
         }
+    },
+    attached() {
+        document.title = "青枫浦 Lite";
     },
     created() {
         github.getList().then(

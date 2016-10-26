@@ -1,14 +1,15 @@
 <template>
 <div id="app">
     <section class="hero is-primary">
-        <div class="hero-body">
+        <div class="hero-head">
             <div class="container">
-                <h1 class="title">
-        <a :href="'#list'">清风浦 lite</a>
-      </h1>
-                <h2 class="subtitle">
-        更轻薄的博客。
-      </h2>
+                <nav class="nav">
+                    <div class="nav-left">
+                        <a class="nav-item is-brand" href="/#/list">
+                            青枫浦 Lite
+                        </a>
+                    </div>
+                </nav>
             </div>
         </div>
     </section>
@@ -33,3 +34,18 @@
     </footer>
 </div>
 </template>
+<script>
+export default {
+    name: 'index',
+    data: function() {
+        return {
+            subtitle: '青枫浦 Lite',
+        }
+    }
+}
+</script>
+<style>
+.footer {
+    padding: 20px 20px 10px;
+}
+</style>

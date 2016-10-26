@@ -1,32 +1,38 @@
 <template>
 <div class="container">
     <div class="content">
-        <div v-if="loading">
+        <div v-if="loading" class="has-text-centered">
             <span class="icon is-large">
   <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
 </span>
         </div>
-        <div v-else class="box">
-            {{{ detail.body | md2html}}}
+        <div v-else class="detail">
+            <div class="detail-title">
+                <p class="has-text-centered title is-4">{{detail.title}}</p>
+            </div>
+            <hr/>
+            <div class="detail-body">{{{ detail.body | md2html}}}</div>
+
         </div>
     </div>
 </template>
 <script>
 import github from '../helpers/github'
+//import tocHelper from '../helpers/toc'
 export default {
-    name: 'detail',
+    name: 'index',
     data() {
         return {
             loading: true,
             detail: {}
         }
     },
-    watch: {
-        // 如果路由有变化，会再次执行该方法
-        '$route': function() {
-            console.log("route changed:", this.loading);
-            this.loading = true;
-        }
+    attached() {
+        if (this.loading)
+            document.title = "loading ---- 青枫浦 Lite";
+    },
+    detached() {
+        this.loading = true;
     },
     route: {
         data({
@@ -37,7 +43,16 @@ export default {
                 (res) => {
                     this.loading = false;
                     this.detail = res;
-                    console.log(typeof(res.title))
+                    //this.detail.toc = tocHelper(res.body);
+                    document.title = res.title;
+                },
+                (res) => {
+                    this.loading = false;
+                    res = {
+                        title: '加载失败',
+                        content: '请稍后重试.'
+                    };
+                    this.detail = res;
                 }
             )
         }
@@ -141,4 +156,21 @@ hue-6-2: #c18401
 .hljs-link {
     text-decoration: underline;
 }
+
+.detail-title {
+    margin-bottom: 20px;
+}
 </style>
+>
+-weight: bold;
+}
+
+.hljs-link {
+    text-decoration: underline;
+}
+
+.detail-title {
+    margin-bottom: 20px;
+}
+</style>
+>
