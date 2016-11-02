@@ -13,8 +13,9 @@ cp ./CNAME ./publish/CNAME -rf
 
 cd publish
 jsName=$(ls static|grep \.js)
+jsName=$(date +%s)${jsName}
 echo "重新修正js路径为:$jsName"
-sed -i "s/\build\.js\/$jsName?$(date +%s)/g" ./index.html
+sed -i "s/\build\.js\/$jsName/g" ./index.html
 echo "" > .gitignore
 git init
 git add .
