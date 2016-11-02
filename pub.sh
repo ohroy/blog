@@ -9,9 +9,9 @@ mkdir publish
 cp ./static ./publish/static -rf
 cp ./index.html ./publish/index.html -rf
 cp ./CNAME ./publish/CNAME -rf
-# 开始计算js的新名字
-
+#进入gh-pages发布逻辑
 cd publish
+# 开始计算js的新名字
 jsName=$(ls static|grep \.js)
 jsName="${jsName}?sign=$(date +%s)"
 echo "重新修正js路径为:$jsName"
@@ -22,6 +22,7 @@ git add .
 git commit -am "publish"
 git push --force --quiet https://github.com/Rozbo/blog.git master:gh-pages
 cd ../
+# 清理资源
 rm -rf ./publish
 rm -rf ./static
 echo "everything ok!"
