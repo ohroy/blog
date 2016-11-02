@@ -5,6 +5,7 @@ git commit -am "auto publish"
 git push origin master
 #然后编辑发布线上版本
 cross-env NODE_ENV=production webpack --progress --hide-modules
+mkdir publish
 cp ./static ./publish/static -rf
 cp ./index.html ./publish/index.html -rf
 cp ./CNAME ./publish/CNAME -rf
