@@ -13,6 +13,7 @@ cp ./CNAME ./publish/CNAME -rf
 
 cd publish
 jsName=$(ls static|grep \.js)
+echo "重新修正js路径为:$jsName"
 sed -i "s/\build\.js\/$jsName?$(date +%s)/g" ./index.html
 echo "" > .gitignore
 git init
@@ -21,4 +22,5 @@ git commit -am "publish"
 git push --force --quiet https://github.com/Rozbo/blog.git master:gh-pages
 cd ../
 rm -rf ./publish
+rm -rf ./static
 echo "everything ok!"
