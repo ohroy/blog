@@ -6,6 +6,7 @@
 真正的**极简博客**
 
 ## 鸣谢列表
+
 * [github](https://github.com)提供数据存储，网页访问等开放服务！
 * [Vue](https://vue.org)提供数据驱动的前端web组件框架。
 * [bulma](http://bulma.io/) 提供界面框架
@@ -16,12 +17,15 @@
 * [moment](https://github.com/moment/moment/)提供时间处理支持
 
 ## 更新历史
+
 ### 11/2/2016
 1. 修改`marked`表格输出格式
 2. 分离`master`分支和`gh-pages`分支
 3. 修改命令`npm run build`的逻辑
+
 ### 10/26/2016
 1. 精简界面内容
 2. 优化`markdown`
+
 ### 10/22/2016
 1. 托管项目到`github`
