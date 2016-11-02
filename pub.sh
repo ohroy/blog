@@ -13,8 +13,8 @@ cp ./CNAME ./publish/CNAME -rf
 cd publish
 # 开始计算js的新名字
 jsName=$(ls static|grep \.js)
-jsName="${jsName}?sign=$(date +%s)"
-echo "重新修正js路径为:$jsName"
+#jsName="${jsName}?sign=$(date +%s)"
+echo "modfiy js filename to:$jsName"
 sed -i "s/build\.js/$jsName/g" ./index.html
 echo "" > .gitignore
 git init
