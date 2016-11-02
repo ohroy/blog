@@ -1,21 +1,21 @@
 {
-  "name": "vue-hackernews",
+  "name": "superliteBlog",
   "version": "1.0.0",
-  "description": "HN clone with Vue.js using HN API",
+  "description": "a vue with github api blog , just a page and super lite by rozbo",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info",
     "build": "./pub.sh"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yyx990803/vue-hackernews.git"
+    "url": "https://github.com/rozbo/blog.git"
   },
-  "author": "Evan You",
+  "author": "rozbo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yyx990803/vue-hackernews/issues"
+    "url": "https://github.com/rozbo/blog/issues"
   },
-  "homepage": "https://github.com/yyx990803/vue-hackernews",
+  "homepage": "https://blog.zz173.com",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
