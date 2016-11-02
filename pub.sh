@@ -9,7 +9,11 @@ mkdir publish
 cp ./static ./publish/static -rf
 cp ./index.html ./publish/index.html -rf
 cp ./CNAME ./publish/CNAME -rf
+# 开始计算js的新名字
+
 cd publish
+jsName=$(ls static|grep \.js)
+sed -i "s/\build\.js\/$jsName?$(date +%s)/g" ./index.html
 echo "" > .gitignore
 git init
 git add .
