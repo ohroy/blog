@@ -36,7 +36,6 @@
   "dependencies": {
     "es6-promise": "^3.0.2",
     "highlight.js": "^9.7.0",
-    "marked": "^0.3.6",
     "moment": "^2.15.1",
     "vue": "^1.0.26",
     "vue-resource": "^1.0.3",

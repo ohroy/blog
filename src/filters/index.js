@@ -1,5 +1,5 @@
 import moment from 'moment'
-import marked from 'marked'
+import marked from '../helpers/marked'
 import highlight from 'highlight.js'
 
 moment.locale('Zh_cn');

@@ -161,16 +161,3 @@ hue-6-2: #c18401
     margin-bottom: 20px;
 }
 </style>
->
--weight: bold;
-}
-
-.hljs-link {
-    text-decoration: underline;
-}
-
-.detail-title {
-    margin-bottom: 20px;
-}
-</style>
->
