@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: true
+                warnings: false
             },
             output: {
                 comments: false
@@ -46,5 +46,6 @@ if (process.env.NODE_ENV === 'production') {
         })
     ]
 } else {
-    module.exports.devtool = '#source-map'
+    module.exports.output.filename = "build.js";
+    module.exports.devtool = '#source-map';
 }

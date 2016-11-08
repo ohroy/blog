@@ -5,8 +5,6 @@ import Vue from 'vue'
 const github = new EventEmitter()
 const itemsCache = Object.create(null);
 const githubURl = 'https://api.github.com/repos/rozbo/blog/issues';
-export default github
-
 
 
 github.getList = function() {
@@ -37,3 +35,7 @@ github.getDetail = id => {
         }
     });
 }
+
+export {
+    github
+};

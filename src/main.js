@@ -11,8 +11,6 @@ import Detail from './components/Detail.vue'
 import List from './components/List.vue'
 
 
-
-
 // install router
 Vue.use(Router)
     //ajax

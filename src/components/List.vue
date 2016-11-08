@@ -40,7 +40,9 @@
 </template>
 
 <script>
-import github from '../helpers/github'
+import {
+    github
+} from '../helpers/github'
 export default {
     name: 'LIst',
     data() {
@@ -52,6 +54,7 @@ export default {
         document.title = "青枫浦 Lite";
     },
     created() {
+        console.log(github)
         github.getList().then(
             (res) => {
                 this.items = res;
