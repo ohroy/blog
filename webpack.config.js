@@ -1,4 +1,5 @@
 var webpack = require('webpack')
+var path = require('path');
 
 module.exports = {
     entry: './src/main.js',
@@ -10,7 +11,7 @@ module.exports = {
     module: {
         // avoid webpack trying to shim process
         noParse: /es6-promise\.js$/,
-        loaders: [{
+        rules: [{
             test: /\.vue$/,
             loader: 'vue'
         }, {
@@ -21,10 +22,6 @@ module.exports = {
             loader: 'babel'
         }]
     },
-    babel: {
-        presets: ['es2015'],
-        plugins: ['transform-runtime']
-    }
 }
 
 if (process.env.NODE_ENV === 'production') {
