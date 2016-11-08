@@ -43,7 +43,8 @@ if (process.env.NODE_ENV === 'production') {
                 comments: false
             },
             sourceMap: false
-        })
+        }),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /Zh_cn/)
     ]
 } else {
     module.exports.output.filename = "build.js";
