@@ -31,12 +31,19 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
-            }
-        }),
-        new webpack.optimize.OccurenceOrderPlugin()
+                warnings: true
+            },
+            output: {
+                comments: false
+            },
+            sourceMap: false
+        })
     ]
 } else {
     module.exports.devtool = '#source-map'
