@@ -17,7 +17,9 @@
     </div>
 </template>
 <script>
-import github from '../helpers/github'
+import {
+    github
+} from '../helpers/github'
 //import tocHelper from '../helpers/toc'
 export default {
     name: 'index',
