@@ -170,8 +170,7 @@
                 this.tokens.push({
                     type: 'code',
                     text: !this.options.pedantic ?
-                        cap.replace(/\n+$/, '') :
-                        cap
+                        cap.replace(/\n+$/, '') : cap
                 });
                 continue;
             }
@@ -327,8 +326,7 @@
 
                     this.tokens.push({
                         type: loose ?
-                            'loose_item_start' :
-                            'list_item_start'
+                            'loose_item_start' : 'list_item_start'
                     });
 
                     // Recurse.
@@ -351,8 +349,7 @@
                 src = src.substring(cap[0].length);
                 this.tokens.push({
                     type: this.options.sanitize ?
-                        'paragraph' :
-                        'html',
+                        'paragraph' : 'html',
                     pre: !this.options.sanitizer &&
                         (cap[1] === 'pre' || cap[1] === 'script' || cap[1] === 'style'),
                     text: cap[0]
@@ -410,8 +407,7 @@
                 this.tokens.push({
                     type: 'paragraph',
                     text: cap[1].charAt(cap[1].length - 1) === '\n' ?
-                        cap[1].slice(0, -1) :
-                        cap[1]
+                        cap[1].slice(0, -1) : cap[1]
                 });
                 continue;
             }
@@ -878,11 +874,11 @@
     };
 
     Renderer.prototype.image = function(href, title, text) {
-        var out = '<img src="' + href + '" alt="' + text + '"';
+        var out = '<figure class="image"><img src="' + href + '" alt="' + text + '"';
         if (title) {
             out += ' title="' + title + '"';
         }
-        out += this.options.xhtml ? '/>' : '>';
+        out += this.options.xhtml ? '/></figure>' : '></figure>';
         return out;
     };
 
@@ -1070,8 +1066,7 @@
             case 'html':
                 {
                     var html = !this.token.pre && !this.options.pedantic ?
-                        this.inline.output(this.token.text) :
-                        this.token.text;
+                        this.inline.output(this.token.text) : this.token.text;
                     return this.renderer.html(html);
                 }
             case 'paragraph':
