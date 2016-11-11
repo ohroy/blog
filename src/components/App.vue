@@ -48,4 +48,8 @@ export default {
 .footer {
     padding: 20px 20px 10px;
 }
+
+img {
+    display: block;
+}
 </style>

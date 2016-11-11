@@ -874,11 +874,11 @@
     };
 
     Renderer.prototype.image = function(href, title, text) {
-        var out = '<figure class="image"><img src="' + href + '" alt="' + text + '"';
+        var out = '<img src="' + href + '" alt="' + text + '"';
         if (title) {
             out += ' title="' + title + '"';
         }
-        out += this.options.xhtml ? '/></figure>' : '></figure>';
+        out += this.options.xhtml ? '/>' : '>';
         return out;
     };
 
