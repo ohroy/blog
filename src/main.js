@@ -5,6 +5,7 @@ import Resource from 'vue-resource'
 import App from './components/App.vue'
 import Detail from './components/Detail.vue'
 import List from './components/List.vue'
+import Error from './components/Error.vue'
 
 
 // install router
@@ -29,7 +30,7 @@ const routes = [{
     },
     {
         path: '*',
-        redirect: '/list'
+        component: Error,
     }
 ]
 

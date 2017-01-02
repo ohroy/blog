@@ -2,7 +2,7 @@
 <div id="app" class="docs scotchified">
     <nav class="main">
         <div class="container">
-            <a href="/" class="brand">
+            <a href="/list" class="brand">
                 <span class="logo">
 		</span> 青枫浦 Lite
             </a>
