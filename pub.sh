@@ -16,7 +16,7 @@ jsName=$(ls static|grep \.js)
 #jsName="${jsName}?sign=$(date +%s)"
 echo "modfiy js filename to:$jsName"
 sed -i "s/build\.js/$jsName/g" ./index.html
-cp index.html 404.html
+mv index.html 404.html
 echo "" > .gitignore
 git init
 git add .
