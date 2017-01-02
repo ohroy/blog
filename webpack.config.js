@@ -8,19 +8,31 @@ module.exports = {
         publicPath: '/static/',
         filename: '[name]-[hash].js'
     },
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
+    },
     module: {
         // avoid webpack trying to shim process
         noParse: /es6-promise\.js$/,
         rules: [{
-            test: /\.vue$/,
-            loader: 'vue'
-        }, {
-            test: /\.js$/,
-            // excluding some local linked packages.
-            // for normal use cases only node_modules is needed.
-            exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
-            loader: 'babel'
-        }]
+                test: /\.vue$/,
+                loader: 'vue'
+            },
+            {
+                test: /\.js$/,
+                // excluding some local linked packages.
+                // for normal use cases only node_modules is needed.
+                exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+                loader: 'babel'
+            },
+            {
+                test: /\.css$/,
+                loader: ['style', 'css']
+            }
+        ]
     },
 }
 
@@ -48,5 +60,5 @@ if (process.env.NODE_ENV === 'production') {
     ]
 } else {
     module.exports.output.filename = "build.js";
-    module.exports.devtool = '#source-map';
+    //module.exports.devtool = '#source-map';
 }

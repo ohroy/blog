@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Resource from 'vue-resource'
-import {
-    md2html,
-    fromNow
-} from './filters'
 
 import App from './components/App.vue'
 import Detail from './components/Detail.vue'
@@ -15,27 +11,49 @@ import List from './components/List.vue'
 Vue.use(Router)
     //ajax
 Vue.use(Resource)
-    // register filters globally
-Vue.filter('fromNow', fromNow)
-Vue.filter('md2html', md2html)
-    // routing
-var router = new Router()
 
-router.map({
-    '/detail/:id': {
+// routing
+
+
+const routes = [{
+        path: '/detail/:id',
         component: Detail
     },
-    '/list': {
-        component: List
+    {
+        path: '/list',
+        component: List,
+    },
+    {
+        path: '/',
+        redirect: '/list'
+    },
+    {
+        path: '*',
+        redirect: '/list'
     }
+]
+
+
+
+var router = new Router({
+    base: __dirname,
+    routes: routes,
+    mode: 'history'
 })
 
-router.beforeEach(function() {
-    window.scrollTo(0, 0);
-})
 
-router.redirect({
-    '*': '/list'
-})
+// router.beforeEach(function () {
+//     window.scrollTo(0, 0);
+// })
 
-router.start(App, '#app');
+// router.redirect({
+//     '*': '/list'
+// })
+
+// 4. 创建和挂载根实例。
+// 记得要通过 router 配置参数注入路由，
+// 从而让整个应用都有路由功能
+const app = new Vue({
+    router,
+    render: h => h(App)
+}).$mount('#app');

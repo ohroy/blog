@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "a vue with github api blog , just a page and super lite by rozbo",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --no-info",
-    "build": "./pub.sh"
+    "dev": "webpack-dev-server --inline --hot --no-info --history-api-fallback --compress --port 4000 --open",
+    "build":"cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "pub": "./pub.sh"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "babel-runtime": "^6.0.0",
     "cross-env": "^2.0.1",
     "css-loader": "^0.24.0",
+    "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
     "vue-hot-reload-api": "^1.2.0",
@@ -32,13 +34,14 @@
     "vue-loader": "^8.0.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^1.12.0"
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "highlight.js": "^9.7.0",
+    "marked": "^0.3.6",
     "moment": "^2.15.1",
-    "vue": "^1.0.26",
+    "prismjs": "^1.6.0",
+    "vue": "^2.1.8",
     "vue-resource": "^1.0.3",
-    "vue-router": "^0.7.13"
+    "vue-router": "^2.1.1"
   }
 }

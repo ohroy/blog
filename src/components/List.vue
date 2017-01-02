@@ -1,52 +1,36 @@
 <template>
-<div class="container">
-    <div class="content">
-        <div v-if="!items.length" class="has-text-centered">
-            <span class="icon is-large">
-  <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
-</span>
-        </div>
-        <div v-else class="">
-            <article class="media" v-for="item in items">
-                <figure class="media-left">
-                    <p class="image is-64x64">
-                        <a title={{item.user.login}} :href="item.user.html_url" target="_blank"><img :src="item.user.avatar_url">
-                        </a>
-                    </p>
-                </figure>
-                <div class="media-content">
-                    <div class="content">
-                        <a id="title" title={{item.title}} :href="'#/detail/'+item.number">{{item.title}}</a> <br/>由
-                        <small>@{{item.user.login}}</small>更新于{{item.updated_at|fromNow}}
-                    </div>
-                    <nav class="level">
-                        <div class="level-left">
-                            <div class="level-item" v-for="label in item.labels">
-                                <span class="tag" :style="'color:white;background-color:#'+label.color">
-{{label.name}}
-  </span></div>
-                        </div>
-                    </nav>
+<section class="panel features dark" id="features">
+    <h1>落月博客        </h1>
+    <p>白云一片去悠悠,青枫浦上不胜愁.</p>
+    <div v-if="!loadOk" class="has-text-centered">
 
-                </div>
-                <div class="media-right">
-                    <a target="_blank" href="{{item.html_url}}" class="button is-primary is-outlined">{{item.comments}}</a>
-                </div>
-            </article>
-
+        <span class="icon is-large">
+                <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
+                </span>
+    </div>
+    <div v-else class="blocks stacked">
+        <div class="block odd" v-for="item in details">
+            <div class="text">
+                <h2><a :title="item.title" :href="'#/detail/'+item.number">{{item.title}}</a></h2>
+                <p v-html="item.body"></p>
+            </div>
         </div>
     </div>
-</div>
+</section>
 </template>
 
 <script>
 import {
     github
 } from '../helpers/github'
+import {
+    summary
+} from '../helpers/render'
 export default {
-    name: 'LIst',
+    name: 'List',
     data() {
         return {
+            loadOk: false,
             items: []
         }
     },
@@ -54,23 +38,24 @@ export default {
         document.title = "青枫浦 Lite";
     },
     created() {
-        console.log(github)
         github.getList().then(
             (res) => {
                 this.items = res;
-                console.log(res);
+                this.loadOk = true;
             },
             (res) => {
                 console.log(error);
             }
         )
+    },
+    computed: {
+        details: function() {
+            for (let item of this.items) {
+                item.body = summary(item.body);
+            }
+            return this.items
+        }
+
     }
 }
 </script>
-<style>
-#title {
-    font-size: 15px;
-    text-decoration: none;
-    border-bottom: 0px;
-}
-</style>
