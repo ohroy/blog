@@ -10,7 +10,7 @@
         <section class="sidebar">
             <ul v-for="toc in detail.toc">
                 <li v-if="toc.level==2 || toc.level==3">
-                    <a :href="'#'+toc.title">{{toc.title}}</a>
+                    <a v-if="toc.level==2" :href="'#'+toc.title">{{toc.title}}</a>
                     <ul v-if="toc.level==3">
                         <li><a :href="'#'+toc.title">{{toc.title}}</a></li>
                     </ul>
@@ -18,9 +18,9 @@
             </ul>
         </section>
 
-        <article v-html="detail.body">
-
+        <article>
             <h1>{{detail.title}}</h1>
+            <div v-html="detail.body"></div>
         </article>
     </div>
 </section>

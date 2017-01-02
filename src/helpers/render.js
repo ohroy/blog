@@ -1,7 +1,7 @@
 import marked from 'marked'
 import Prism from 'prismjs'
 import prism_php from 'prismjs/components/prism-php'
-
+import prism_shell from 'prismjs/components/prism-shell'
 
 let toc = [];
 
