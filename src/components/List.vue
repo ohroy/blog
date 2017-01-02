@@ -11,7 +11,8 @@
     <div v-else class="blocks stacked">
         <div class="block odd" v-for="item in details">
             <div class="text">
-                <h2><a :title="item.title" :href="'/detail/'+item.number">{{item.title}}</a></h2>
+                <h2><router-link :to="'/detail/'+item.number">{{item.title}}</router-link>
+                    </h2>
                 <p v-html="item.body"></p>
             </div>
         </div>

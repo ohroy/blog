@@ -46,6 +46,28 @@ export function summary(md) {
         .replace(/\n/g, "")
         .substr(0, 188) + "...";
 }
+export function tocList() {
+    let res = [];
+    for (var i = 0; i < toc.length;) {
+        if (toc[i].level == 2) {
+            let lv2 = toc[i];
+            lv2.sub = new Array();
+            i++;
+            while (i < toc.length) {
+                if (toc[i].level == 3) {
+                    lv2.sub.push(toc[i]);
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            res.push(lv2);
+        } else {
+            i++;
+        }
+    }
+    return res;
+}
 export {
     toc
 };
