@@ -51,4 +51,8 @@
 .icon-5icon:before { content: "\e62e"; }
 
 .icon-loading:before { content: "\e602"; }
-
+.brand:before{
+  font-family:"iconfont" !important;
+  content: "\e62e";
+  clear: both;
+}

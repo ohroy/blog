@@ -2,6 +2,8 @@ import marked from 'marked'
 import Prism from 'prismjs'
 import prism_php from 'prismjs/components/prism-php'
 import prism_bash from 'prismjs/components/prism-bash'
+import prism_line_num from 'prismjs/plugins/line-numbers/prism-line-numbers'
+
 
 let toc = [];
 
@@ -10,11 +12,7 @@ renderInit();
 function renderInit() {
     const renderer = new marked.Renderer();
     // highlight code
-    renderer.code = function(code, lang = '') {
-        const hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
-            .replace(/{{/g, '<span>{{</span>');
-        return `<pre class="language-${lang}"><code class="language-${lang}">${hl}</code></pre>`
-    }
+    renderer.code = code;
     renderer.heading = function(text, level) {
         toc.push({
             level,
@@ -29,8 +27,15 @@ function renderInit() {
 }
 
 
-
-
+export function code(code,lang='',line=false){
+    const hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
+        .replace(/{{/g, '<span>{{</span>');
+    let lineNumClass='';
+    if(line){
+        lineNumClass=' line-numbers';
+    }
+    return `<pre class="language-${lang}${lineNumClass}"><code class="language-${lang}">${hl}</code></pre>`
+}
 export function md2html(md) {
     toc = [];
     return marked(md);

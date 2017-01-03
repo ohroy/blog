@@ -2,9 +2,9 @@
 <div id="app" class="docs scotchified">
     <nav class="main">
         <div class="container">
-            <router-link :to="'/list'" class="brand"><span class="logo">
-    </span> 青枫浦 Lite</router-link>
 
+            <router-link :to="'/list'" class="brand">
+                青枫浦 Lite</router-link>
             <div class="responsive-sidebar-nav">
                 <a href="#" class="toggle-slide menu-link btn">☰</a>
             </div>

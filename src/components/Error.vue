@@ -1,7 +1,50 @@
 <template>
-<section class="panel features dark" id="features">
-    <h1>落月博客        </h1>
-    <p>白云一片去悠悠,青枫浦上不胜愁.</p>
-    <p>可囍的是,你发现了新大陆,然而这里什么都没有.</p>
-</section>
+    <section class="panel statement dark">
+        <div class="content">
+            <div class="browser-window">
+                <div class="top-bar">
+                    <div class="circles">
+                        <div class="circle circle-red"></div>
+                        <div class="circle circle-yellow"></div>
+                        <div class="circle circle-green"></div>
+                    </div>
+                </div>
+                <div class="window-content" v-html="codes">
+                </div>
+            </div>
+        </div>
+
+    </section>
 </template>
+<script>
+import {
+    code
+} from '../helpers/render'
+export default {
+    name: 'Error',
+    computed:{
+    codes:function () {
+        let str=
+        `<?php
+
+            //输出404状态
+            header('HTTP/1.1 404 Not Found');
+            header("status: 404 Not Found");
+            //定义404数据
+            $array=(
+                'status'=>false,
+                'code'=>404,
+                'reason'=>'Not Found',
+                'remark'=>'雾霾太大了,这个页面根本看不清.',
+                'time'=>time()
+            );
+            //转换json
+            $json2show=json_encode($array);
+            //输出
+            die($json2show);
+        `;
+        return code(str,'php',true);
+        }
+    }
+}
+</script>

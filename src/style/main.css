@@ -1551,8 +1551,7 @@ nav.main:after {
 nav.main a.brand {
     color: #e74430;
     font-size: 21px;
-    float: left;
-    width: 125px;
+    width: 130px;
     line-height: 90px;
 }
 
@@ -1729,7 +1728,7 @@ nav.main .switcher .dropdown-menu>li>a {
 
 .panel.statement .content {
     margin: 0 auto;
-    padding-top: 250px;
+    padding-top: 30px;
     width: 100%;
     padding-bottom: 150px;
 }
@@ -2415,4 +2414,7 @@ body.the-404 .contain h1 {
 body.the-404 .contain .content, body.the-404 .contain .media {
     display: table-cell;
     vertical-align: middle;
+}
+.logo{
+    font-size: 1.2em !important;
 }
