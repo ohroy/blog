@@ -1,13 +1,10 @@
 <template>
 <section class="panel features dark" id="features">
-    <h1>落月博客        </h1>
+    <h1>落月博客</h1>
     <p>白云一片去悠悠,青枫浦上不胜愁.</p>
-    <div v-if="!loadOk" class="has-text-centered">
-
-        <span class="icon is-large">
-                <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
-                </span>
-    </div>
+    <p v-if="!loadOk" class="has-text-centered">
+        <i class="iconfont icon-loading if-spin if-3x if-main"></i>
+    </p>
     <div v-else class="blocks stacked">
         <div class="block odd" v-for="item in details">
             <div class="text">
@@ -24,6 +21,9 @@
 import {
     github
 } from '../helpers/github'
+import
+    * as iconfont
+ from '../style/iconfont.css'
 import {
     summary
 } from '../helpers/render'

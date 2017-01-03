@@ -4,7 +4,7 @@
   "description": "a vue with github api blog , just a page and super lite by rozbo",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info --history-api-fallback --compress --port 4000 --open",
-    "build":"cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "pub": "./pub.sh"
   },
   "repository": {
@@ -29,6 +29,7 @@
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
+    "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.0.0",

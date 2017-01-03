@@ -1,32 +1,33 @@
 <template>
-<section>
-    <div v-if="loading" class="has-text-centered">
-        <span class="icon is-large">
-      <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
-    </span>
-    </div>
-    <div v-else class="docs-wrapper container">
+    <section>
+        <div v-if="loading" class="panel features">
+            <p>
+                <i class="iconfont icon-loading if-spin if-3x if-main"></i></p>
+            <p>{{status}}
+            </p>
+        </div>
+        <div v-else class="docs-wrapper container">
 
-        <section class="sidebar">
-            <ul>
-                <template v-for="toc in detail.toc">
+            <section class="sidebar">
+                <ul>
+                    <template v-for="toc in detail.toc">
                         <li>
-                            <a :href="'#'+toc.title">{{toc.title}}</a>
+                            <a :href="'#'+toc.title" v-html="toc.title"></a>
                             <ul v-if="toc.sub.length>0">
                                 <li v-for="sub in toc.sub">
-                                    <a :href="'#'+sub.title">{{sub.title}}</a>
+                                    <a :href="'#'+sub.title" v-html="sub.title"></a>
                                 </li>
                             </ul>
                         </li>
-</template>
+                    </template>
                 </ul>
             </section>
 
             <article>
                 <h1>{{detail.title}}</h1>
                 <div v-html="detail.body">
-        </div>
-        </article>
+                </div>
+            </article>
         </div>
     </section>
 </template>
@@ -44,7 +45,8 @@ export default {
     data() {
         return {
             loading: true,
-            detail: {}
+            detail: {},
+            status:'正在加载...',
         }
     },
     attached() {
@@ -57,24 +59,19 @@ export default {
     created() {
         github.getDetail(this.$route.params.id).then(
             (res) => {
+                this.status='正在解析...';
                 this.loading = false;
                 this.detail = res;
                 this.detail.body = md2html(this.detail.body);
                 this.detail.toc = tocList();
-                console.log(this.detail.toc);
                 document.title = res.title;
             },
             (res) => {
-                this.loading = false;
-                res = {
-                    title: '加载失败',
-                    content: '请稍后重试.'
-                };
-                this.detail = res;
+                this.status='从服务端数据失败...';
             }
         );
     }
 }
+
 </script>
-}
-</script>
+

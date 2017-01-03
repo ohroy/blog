@@ -18,9 +18,9 @@ module.exports = {
         // avoid webpack trying to shim process
         noParse: /es6-promise\.js$/,
         rules: [{
-                test: /\.vue$/,
-                loader: 'vue'
-            },
+            test: /\.vue$/,
+            loader: 'vue'
+        },
             {
                 test: /\.js$/,
                 // excluding some local linked packages.
@@ -31,6 +31,14 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ['style', 'css']
+            },
+            {
+                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                loader: 'url-loader',
+                query:{
+                    limit:50000,
+                    name:"[path][name].[ext]"
+                }
             }
         ]
     },
