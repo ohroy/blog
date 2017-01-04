@@ -16,7 +16,7 @@ script:
   - mkdir publish
   - cp ./static ./publish/static -rf
   - cp ./index.html ./publish/index.html -rf
-  - cp ./CNAME ./publish/CNAME -rf
+  - echo "blog.zz173.com" > ./publish/CNAME
    #进入gh-pages发布逻辑
   - cd publish
    # 开始计算js的新名字
@@ -29,7 +29,7 @@ script:
   - git init
   - git add .
   - git commit -am "publish"
-  - git push --force --quiet https://github.com/Rozbo/blog.git master:gh-pages
+  - git push --force --quiet https://${github_token}@${github_ref} master:gh-pages
   - cd ../
    # 清理资源
   - rm -rf ./publish
