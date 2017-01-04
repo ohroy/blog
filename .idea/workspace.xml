@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e420910d-d0a0-49ac-8fcc-d5d8d28f101c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.travis.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -84,8 +84,8 @@
       <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+            <state relative-caret-position="315">
+              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -387,7 +387,7 @@
       <option name="presentableId" value="Default" />
       <updated>1483448194370</updated>
       <workItem from="1483448285252" duration="132000" />
-      <workItem from="1483448429544" duration="20661000" />
+      <workItem from="1483448429544" duration="20842000" />
     </task>
     <task id="LOCAL-00001" summary="1.修复标题bug&#10;2.增加列表页缓存&#10;3.调整压缩配置&#10;4.随机春江花月夜">
       <created>1483496753067</created>
@@ -403,11 +403,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483499385545</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="添加travis-ci">
+      <created>1483507788840</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1483507788840</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20793000" />
+    <option name="totallyTimeSpent" value="20974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="20" y="107" width="1340" height="738" extended-state="0" />
@@ -459,7 +466,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.修复标题bug&#10;2.增加列表页缓存&#10;3.调整压缩配置&#10;4.随机春江花月夜" />
     <MESSAGE value="添加载入动画" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加载入动画" />
+    <MESSAGE value="添加travis-ci" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加travis-ci" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -630,8 +638,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="315">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding />
         </state>
       </provider>

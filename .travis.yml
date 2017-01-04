@@ -1,3 +1,7 @@
+language: node_js
+
+node_js: stable
+
 before_install:
   - git config --global user.name "${gitconf_username}"
   - git config --global user.email "${gitconf_email}"
@@ -5,7 +9,7 @@ before_install:
 
 script:
   #然后编辑发布线上版本
-  - cross-env NODE_ENV=production webpack --progress --hide-modules
+  - npm run build
   - mkdir publish
   - cp ./static ./publish/static -rf
   - cp ./index.html ./publish/index.html -rf
