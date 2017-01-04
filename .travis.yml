@@ -1,6 +1,10 @@
 language: node_js
 
 node_js: stable
+cache:
+  directories:
+    - node_modules
+    - public
 
 before_install:
   - git config --global user.name "${gitconf_username}"
