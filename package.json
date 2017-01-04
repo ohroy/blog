@@ -18,6 +18,7 @@
   },
   "homepage": "https://blog.zz173.com",
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-plugin-transform-runtime": "^6.0.0",

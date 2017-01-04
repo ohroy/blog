@@ -7,6 +7,9 @@ before_install:
   - git config --global user.email "${gitconf_email}"
 
 
+install:
+  - "npm install"
+
 script:
   #然后编辑发布线上版本
   - npm run build
