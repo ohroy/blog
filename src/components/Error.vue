@@ -36,7 +36,9 @@ export default {
                 'code'=>404,
                 'reason'=>'Not Found',
                 'remark'=>'雾霾太大了,这个页面根本看不清.',
-                'time'=>time()
+                'time'=>time(),
+                'try'=>'/list',
+                'contact'=>'rozbo'
             );
             //转换json
             $json2show=json_encode($array);
