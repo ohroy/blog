@@ -8,6 +8,7 @@
         </div>
         <div v-else class="docs-wrapper container">
 
+            <v-affix offset="0">
             <section class="sidebar">
                 <ul>
                     <template v-for="toc in detail.toc">
@@ -22,7 +23,7 @@
                     </template>
                 </ul>
             </section>
-
+            </v-affix>
             <article>
 
                 <transition appear name="bounce">
@@ -47,6 +48,9 @@ import {
     tocList,
     md2html
 } from '../helpers/render'
+
+import vAffix from './Affix.vue'
+
 export default {
     name: 'Detail',
     data() {
@@ -77,6 +81,9 @@ export default {
                 this.status='从服务端数据失败...';
             }
         );
+    },
+    components: {
+        vAffix
     }
 }
 
