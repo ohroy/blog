@@ -6,6 +6,7 @@
         <i class="iconfont icon-loading if-spin if-3x if-main"></i>
     </p>
     <div v-else class="blocks stacked">
+
         <div class="block odd" v-for="item in details">
             <div class="text">
                 <h2><router-link :to="'/detail/'+item.number">{{item.title}}</router-link>
@@ -13,6 +14,7 @@
                 <p v-html="item.body"></p>
             </div>
         </div>
+
     </div>
 </section>
 </template>

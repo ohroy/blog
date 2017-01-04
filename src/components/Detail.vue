@@ -24,9 +24,16 @@
             </section>
 
             <article>
-                <h1>{{detail.title}}</h1>
+
+                <transition appear name="bounce">
+             <h1>{{detail.title}}</h1>
+                </transition>
+
+                <transition name="my" appear appear-active-class="overlay">
                 <div v-html="detail.body">
                 </div>
+                    </transition>
+
             </article>
         </div>
     </section>
