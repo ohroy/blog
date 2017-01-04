@@ -49,11 +49,11 @@ export default {
             status:'正在加载...',
         }
     },
-    attached() {
+    mounted() {
         if (this.loading)
             document.title = "loading ---- 青枫浦 Lite";
     },
-    detached() {
+    destroyed() {
         this.loading = true;
     },
     created() {

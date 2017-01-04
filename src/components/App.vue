@@ -11,7 +11,8 @@
         </div>
     </nav>
     <section class="section">
-        <router-view class="view" keep-alive transition transition-mode="out-in">
+        <!--class="view" keep-alive transition transition-mode="out-in"-->
+        <router-view>
         </router-view>
     </section>
     <footer class="main">

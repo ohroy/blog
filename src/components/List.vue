@@ -1,7 +1,7 @@
 <template>
 <section class="panel features dark" id="features">
     <h1>落月博客</h1>
-    <p>白云一片去悠悠,青枫浦上不胜愁.</p>
+    <p>{{tip}}</p>
     <p v-if="!loadOk" class="has-text-centered">
         <i class="iconfont icon-loading if-spin if-3x if-main"></i>
     </p>
@@ -27,6 +27,9 @@ import
 import {
     summary
 } from '../helpers/render'
+import {
+    getTip
+} from '../helpers/tip'
 export default {
     name: 'List',
     data() {
@@ -35,7 +38,7 @@ export default {
             items: []
         }
     },
-    attached() {
+    mounted() {
         document.title = "青枫浦 Lite";
     },
     created() {
@@ -55,8 +58,8 @@ export default {
                 item.body = summary(item.body);
             }
             return this.items
-        }
-
+        },
+        tip:getTip
     }
 }
 </script>
