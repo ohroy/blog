@@ -5,9 +5,6 @@
 
             <router-link :to="'/list'" class="brand">
                 青枫浦 Lite</router-link>
-            <div class="responsive-sidebar-nav">
-                <a href="#" class="toggle-slide menu-link btn">☰</a>
-            </div>
         </div>
     </nav>
     <section class="section">
