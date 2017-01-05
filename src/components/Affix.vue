@@ -76,12 +76,12 @@ export default {
       const affix = this.affix
       const scrollTop = getScroll(window, true)
       const elemOffset = getOffset(this.$el)
+      console.log(elemOffset);
       if (!affix && (elemOffset.top - this.offset) < scrollTop) {
         this.affix = true
         this.affixStyle = {
-          top: this.offset + 'px',
-          left: elemOffset.left + 'px',
-          width: this.$el.offsetWidth + 'px'
+            top: this.offset + 'px',
+            left: elemOffset.left + 'px'
         }
       } else if (affix && (elemOffset.top - this.offset) >= scrollTop) {
         this.affix = false
