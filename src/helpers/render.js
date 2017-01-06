@@ -6,10 +6,9 @@ import prism_line_num from 'prismjs/plugins/line-numbers/prism-line-numbers'
 
 
 let toc = [];
+let cache={};
 
-renderInit();
-
-function renderInit() {
++(function renderInit() {
     const renderer = new marked.Renderer();
     // highlight code
     renderer.code = code;
@@ -18,13 +17,17 @@ function renderInit() {
             level,
             title: text
         })
-        return `<h${level} id="${text}"><a href="#${text}">
+        if(level==2){
+            return `<h${level} id="${text}"><a href="#${text}">
         ${text}</a></h${level}>`
+        }
+        return `<h${level} id="${text}">
+        ${text}</h${level}>`
     }
     marked.setOptions({
         renderer
     });
-}
+})()
 
 
 export function code(code,lang='',line=false){
@@ -36,12 +39,25 @@ export function code(code,lang='',line=false){
     }
     return `<pre class="language-${lang}${lineNumClass}"><code class="language-${lang}">${hl}</code></pre>`
 }
-export function md2html(md) {
-    toc = [];
-    return marked(md);
+function md2html(md) {
+    let res=marked(md);
+    return res;
 }
 
-export function summary(md) {
+export function rend(flag,src){
+    if(!cache[flag]){
+        toc=[];
+        cache[flag]={};
+        cache[flag].html=md2html(src);
+        cache[flag].toc=tocList();
+        cache[flag].summary=summary(src);
+    }
+    return cache[flag];
+
+}
+
+
+function summary(md) {
     return md2html(md)
         .replace(/<pre[\s\S]*>[\s\S]*<\/pre>/g, "[code]code[/code]")
         .replace(/<h[1-7][\s\S]*?>[\s\S]*?<\/h[1-7]>/g, "")
@@ -51,7 +67,7 @@ export function summary(md) {
         .replace(/\n/g, "")
         .substr(0, 188) + "...";
 }
-export function tocList() {
+function tocList() {
     let res = [];
     for (var i = 0; i < toc.length;) {
         if (toc[i].level == 2) {
@@ -73,6 +89,4 @@ export function tocList() {
     }
     return res;
 }
-export {
-    toc
-};
+

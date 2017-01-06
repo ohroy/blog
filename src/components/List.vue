@@ -16,7 +16,7 @@
             <div class="text">
                 <h2><router-link :to="'/detail/'+item.number">{{item.title}}</router-link>
                     </h2>
-                <p v-html="item.body"></p>
+                <p v-html="item.rend.summary"></p>
             </div>
         </div>
 
@@ -32,7 +32,7 @@ import
     * as iconfont
  from '../style/iconfont.css'
 import {
-    summary
+    rend
 } from '../helpers/render'
 import {
     getTip
@@ -65,7 +65,7 @@ export default {
     computed: {
         details: function() {
             for (let item of this.items) {
-                item.body = summary(item.body);
+                item.rend = rend(item.number,item.body);
             }
             return this.items
         },

@@ -11,12 +11,12 @@
             <v-affix offset="0">
             <section class="sidebar">
                 <ul>
-                    <template v-for="toc in detail.toc">
+                    <template v-for="toc in detail.rend.toc">
                         <li>
-                            <a :href="'#'+toc.title" v-html="toc.title"></a>
+                            <a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>
                             <ul v-if="toc.sub.length>0">
                                 <li v-for="sub in toc.sub">
-                                    <a :href="'#'+sub.title" v-html="sub.title"></a>
+                                    <a v-smooth-scroll :href="'#'+sub.title" v-html="sub.title"></a>
                                 </li>
                             </ul>
                         </li>
@@ -31,7 +31,7 @@
                 </transition>
 
                 <transition name="my" appear appear-active-class="overlay">
-                <div v-html="detail.body">
+                <div v-html="detail.rend.html">
                 </div>
                     </transition>
 
@@ -45,8 +45,7 @@ import {
 } from '../helpers/github'
 //import tocHelper from '../helpers/toc'
 import {
-    tocList,
-    md2html
+    rend
 } from '../helpers/render'
 
 import vAffix from './Affix.vue'
@@ -68,13 +67,13 @@ export default {
         this.loading = true;
     },
     created() {
-        github.getDetail(this.$route.params.id).then(
+        let flag=this.$route.params.id;
+        github.getDetail(flag).then(
             (res) => {
                 this.status='正在解析...';
                 this.loading = false;
                 this.detail = res;
-                this.detail.body = md2html(this.detail.body);
-                this.detail.toc = tocList();
+                this.detail.rend = rend(flag,this.detail.body);
                 document.title = res.title;
             },
             (res) => {
