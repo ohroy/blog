@@ -2,9 +2,14 @@
 <section class="panel features dark" id="features">
     <h1>落月博客</h1>
     <p>{{tip}}</p>
-    <p v-if="!loadOk" class="has-text-centered">
-        <i class="iconfont icon-loading if-spin if-3x if-main"></i>
+    <template v-if="!loadOk">
+    <p>
+        <i :class="loadingClass"></i>
     </p>
+    <p>
+        {{status}}
+    </p>
+    </template>
     <div v-else class="blocks stacked">
 
         <div class="block odd" v-for="item in details">
@@ -37,7 +42,9 @@ export default {
     data() {
         return {
             loadOk: false,
-            items: []
+            items: [],
+            status:'Loading...',
+            loadingClass:'iconfont icon-loading if-spin if-3x if-main'
         }
     },
     mounted() {
@@ -50,7 +57,8 @@ export default {
                 this.loadOk = true;
             },
             (res) => {
-                console.log(error);
+                this.status=`Error:${res.statusText}`;
+                this.loadingClass='iconfont icon-loading if-3x if-main';
             }
         )
     },

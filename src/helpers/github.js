@@ -16,9 +16,7 @@ github.getList = function() {
             (response) => {
                 listCache=response.body;
                 resolve(response.body);
-            }, (response) => {
-                reject;
-            }
+            }, reject
         );
     });
 }
