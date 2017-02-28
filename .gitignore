@@ -5,3 +5,4 @@ static
 CNAME
 publish
 *.log
+*.iml
