@@ -7,7 +7,7 @@
                 青枫浦 Lite</router-link>
         </div>
     </nav>
-    <section class="section">
+    <section class="section" id="top">
         <router-view>
         </router-view>
     </section>

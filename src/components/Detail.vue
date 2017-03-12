@@ -21,6 +21,9 @@
                             </ul>
                         </li>
                     </template>
+                    <li>
+                        <a v-smooth-scroll href="#top">返回顶部</a>
+                    </li>
                 </ul>
             </section>
             </v-affix>
