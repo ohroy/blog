@@ -8,6 +8,24 @@
 做到了没有一句废话，没有一点冗余。  
 真正的**极简博客**
 
+
+## 使用说明
+- 安装nodejs&&npm
+- 克隆本项目到你的本地
+```shell
+git clone https://github.com/Rozbo/blog
+```
+- 进入博客目录安装依赖
+```shell
+cd blog
+npm install
+```
+- 修改源码中issue地址为你自己的
+- 打包js并上传index.html和static目录
+```shell
+npm run build
+```
+
 ## 上个版本
 [1.0.0](1.0.0.md)
 
