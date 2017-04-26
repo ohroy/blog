@@ -4,7 +4,7 @@ import {
 import Vue from 'vue'
 const github = new EventEmitter()
 const itemsCache = Object.create(null);
-const githubURl = 'https://api.github.com/repos/rozbo/blog/issues';
+const githubURl = 'https://api.github.com/repos/rozbo/blog/issues?creator=rozbo';
 let listCache='';
 
 github.getList = function() {
