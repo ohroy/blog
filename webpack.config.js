@@ -1,10 +1,10 @@
 var webpack = require('webpack')
-var path = require('path');
+const path = require('path');
 
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: './static',
+        path: path.resolve(__dirname, "static"),
         publicPath: '/static/',
         filename: '[name]-[hash].js'
     },
