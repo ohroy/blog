@@ -15,17 +15,22 @@ Vue.use(Router);
 Vue.use(Resource);
 Vue.use(AnchorScroll);
 
-const routes = [{
+const routes = [
+    {
+        path: '/list',
+        redirect: '/'
+    },
+    {
         path: '/detail/:id',
         component: Detail
     },
     {
-        path: '/list',
-        component: List,
+        path: '/:id(\\d+)',
+        component: Detail
     },
     {
         path: '/',
-        redirect: '/list'
+        component: List,
     },
     {
         path: '*',

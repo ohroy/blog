@@ -10,33 +10,33 @@
 
             <v-affix offset="0">
             <section class="sidebar">
+
+                    <transition-group appear name="list" tag="ul">
+                    <li v-for="toc in detail.rend.toc" v-bind:key="toc">
+                        <a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>
+                        <ul v-if="toc.sub.length>0">
+                            <li v-for="sub in toc.sub">
+                                <a v-smooth-scroll :href="'#'+sub.title" v-html="sub.title"></a>
+                            </li>
+                        </ul>
+                    </li>
+                    </transition-group>
                 <ul>
-                    <template v-for="toc in detail.rend.toc">
-                        <li>
-                            <a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>
-                            <ul v-if="toc.sub.length>0">
-                                <li v-for="sub in toc.sub">
-                                    <a v-smooth-scroll :href="'#'+sub.title" v-html="sub.title"></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </template>
                     <li>
                         <a v-smooth-scroll href="#top">返回顶部</a>
                     </li>
                 </ul>
+
             </section>
             </v-affix>
             <article>
-
-                <transition appear name="bounce">
              <h1>{{detail.title}}</h1>
-                </transition>
 
-                <transition name="my" appear appear-active-class="overlay">
+
+
                 <div v-html="detail.rend.html">
                 </div>
-                    </transition>
+
 
             </article>
         </div>

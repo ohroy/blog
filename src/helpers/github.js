@@ -4,7 +4,8 @@ import {
 import Vue from 'vue'
 const github = new EventEmitter()
 const itemsCache = Object.create(null);
-const githubURl = 'https://api.github.com/repos/rozbo/blog/issues?creator=rozbo';
+const githubURl = 'https://api.github.com/repos/rozbo/blog/issues';
+const author='rozbo';
 let listCache='';
 
 github.getList = function() {
@@ -12,7 +13,7 @@ github.getList = function() {
         if(listCache!=''){
             resolve(listCache);
         }
-        Vue.http.get(githubURl).then(
+        Vue.http.get(githubURl+'?creator='+author).then(
             (response) => {
                 listCache=response.body;
                 resolve(response.body);
@@ -29,6 +30,7 @@ github.getDetail = id => {
         } else {
             Vue.http.get(githubURl + '/' + id).then(
                 (response) => {
+                    console.log(response);
                     itemsCache[id] = response.body;
                     console.log("by get");
                     resolve(itemsCache[id]);
