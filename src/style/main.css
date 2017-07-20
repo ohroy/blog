@@ -2044,7 +2044,11 @@ nav.main .switcher .dropdown-menu>li>a {
     font-size: 16px;
     line-height: 1.65;
 }
-
+.docs article p img{
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+}
 .docs article h1+ul {
     margin: 0;
     padding: 0;
