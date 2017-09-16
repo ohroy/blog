@@ -1,6 +1,6 @@
 {
   "name": "superliteBlog",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "a vue with github api blog , just a page and super lite by rozbo",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info --history-api-fallback --compress --port 4000 --open",

@@ -1,11 +1,13 @@
 import {
     EventEmitter
 } from 'events'
+import config from '../config'
+
 import Vue from 'vue'
 const github = new EventEmitter()
 const itemsCache = Object.create(null);
-const githubURl = 'https://api.github.com/repos/rozbo/blog/issues';
-const author='rozbo';
+const author=config.user.name;
+const githubURl = 'https://api.github.com/repos/'+author+'/'+config.user.repo+'/issues';
 let listCache='';
 
 github.getList = function() {
