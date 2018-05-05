@@ -12,7 +12,7 @@
             <section class="sidebar">
 
                     <transition-group appear name="list" tag="ul">
-                    <li v-for="toc in detail.rend.toc" v-bind:key="toc">
+                    <li v-for="(toc,index) in detail.rend.toc" v-bind:key="index">
                         <a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>
                         <ul v-if="toc.sub.length>0">
                             <li v-for="sub in toc.sub">
@@ -40,6 +40,8 @@
 
             </article>
         </div>
+        <div id="comments">
+        </div>
     </section>
 </template>
 <script>
@@ -50,6 +52,8 @@ import {
 import {
     rend
 } from '../helpers/render'
+
+import Gitment from '../directives/gitment'
 
 import vAffix from './Affix.vue'
 
@@ -63,8 +67,14 @@ export default {
         }
     },
     mounted() {
+        let flag=this.$route.params.id;
         if (this.loading)
             document.title = "loading ---- 青枫浦 Lite";
+        const gitment = new Gitment({
+            id: flag, // optional
+            meta:this.detail
+        })
+        gitment.render('comments')
     },
     destroyed() {
         this.loading = true;
@@ -83,6 +93,8 @@ export default {
                 this.status='从服务端数据失败...';
             }
         );
+
+
     },
     components: {
         vAffix

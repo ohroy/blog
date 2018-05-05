@@ -19,6 +19,7 @@
 </template>
 <script>
 import * as css from '../style/main.css'
+import * as gitment_css from '../style/gitment.css'
 export default {
     name: 'app',
     data: function() {

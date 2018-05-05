@@ -1,6 +1,6 @@
 import marked from 'marked'
 import Prism from 'prismjs'
-import prism_php from 'prismjs/components/prism-php'
+//import prism_php from 'prismjs/components/prism-php'
 import prism_bash from 'prismjs/components/prism-bash'
 import prism_line_num from 'prismjs/plugins/line-numbers/prism-line-numbers'
 
@@ -45,13 +45,16 @@ function md2html(md) {
 }
 
 export function rend(flag,src){
+    console.log(cache);
     if(!cache[flag]){
         toc=[];
         cache[flag]={};
         cache[flag].html=md2html(src);
         cache[flag].toc=tocList();
+        console.log(cache[flag].toc);
         cache[flag].summary=summary(src);
     }
+    console.log('r',cache[flag]);
     return cache[flag];
 
 }

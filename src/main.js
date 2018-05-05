@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resource from 'vue-resource'
 import AnchorScroll from './directives/anchor-scroll'
 
 import App from './components/App.vue'
@@ -12,7 +11,6 @@ import Error from './components/Error.vue'
 // install router
 Vue.use(Router);
     //ajax
-Vue.use(Resource);
 Vue.use(AnchorScroll);
 
 const routes = [
