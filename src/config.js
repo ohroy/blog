@@ -6,7 +6,7 @@ export const config = {
         client_secret:'76a75f23eba46b6feabd610232714ef20cad377a'
     },
     site: {
-        name:'清风浦'
+        name:'清风浦 Lite'
     },
     guest:{
         access_token_key:'xxxx',

@@ -33,7 +33,7 @@ class Gitment {
     }
 
     get loginLink() {
-        const oauthUri = 'https://guest.com/login/oauth/authorize'
+        const oauthUri = 'https://github.com/login/oauth/authorize'
         const redirect_uri = this.oauth.redirect_uri || window.location.href
 
         const oauthParams = Object.assign({
@@ -59,7 +59,8 @@ class Gitment {
             owner: config.user.name,
             repo: config.user.repo,
             perPage: 20,
-            maxCommentHeight: 250
+            maxCommentHeight: 250,
+            meta:{}
         }, options)
 
         this.useTheme(this.theme)

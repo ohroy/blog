@@ -41,13 +41,6 @@ function renderHeader({ meta, user, reactions }, instance) {
   `
     container.appendChild(commentsCount)
 
-    const issueLink = document.createElement('a')
-    issueLink.className = 'gitment-header-issue-link'
-    issueLink.href = meta.html_url
-    issueLink.target = '_blank'
-    issueLink.innerText = 'Issue Page'
-    container.appendChild(issueLink)
-
     return container
 }
 
@@ -91,7 +84,7 @@ function renderComments({ meta, comments, commentReactions, currentPage, user, e
     } else if (!comments.length) {
         const emptyBlock = document.createElement('div')
         emptyBlock.className = 'gitment-comments-empty'
-        emptyBlock.innerText = 'No Comment Yet'
+        emptyBlock.innerText = '这篇文章还没有评论'
         container.appendChild(emptyBlock)
         return container
     }
@@ -246,8 +239,9 @@ function renderEditor({ user, error }, instance) {
     </div>
     <div class="gitment-editor-footer">
       <a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-        Styling with Markdown is supported
+        请使用<strong>markdown</strong>进行书写。
       </a>
+      <small>没必要进行xss尝试，因为这个一个全静态的网站。</small>
       <button class="gitment-editor-submit" title="${disabledTip}" ${shouldDisable}>Comment</button>
     </div>
   `
@@ -319,16 +313,7 @@ function renderEditor({ user, error }, instance) {
 }
 
 function renderFooter() {
-    const container = document.createElement('div')
-    container.lang = "en-US"
-    container.className = 'gitment-container gitment-footer-container'
-    container.innerHTML = `
-    Powered by
-    <a class="gitment-footer-project-link" href="https://github.com/imsun/gitment" target="_blank">
-      Gitment
-    </a>
-  `
-    return container
+    return;
 }
 
 function render(state, instance) {
