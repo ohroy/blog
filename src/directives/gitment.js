@@ -33,7 +33,7 @@ class Gitment {
     }
 
     get loginLink() {
-        const oauthUri = 'https://guest.com/login/oauth/authorize'
+        const oauthUri = 'https://github.com/login/oauth/authorize'
         const redirect_uri = this.oauth.redirect_uri || window.location.href
 
         const oauthParams = Object.assign({

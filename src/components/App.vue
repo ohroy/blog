@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="docs scotchified">
-    <nav class="main">
+    <nav class="main mb-md-6">
         <div class="container">
 
             <router-link :to="'/list'" class="brand">
@@ -18,8 +18,9 @@
 </div>
 </template>
 <script>
-import "primer/index.scss";
+import "primer-base/index.scss";
 import "primer-layout/index.scss";
+import "primer-utilities/index.scss";
 import "../style/nav.scss";
 import "../style/footer.scss";
 export default {

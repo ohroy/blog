@@ -1,7 +1,10 @@
 <template>
-<section class="panel features dark" id="features">
-    <h1>落月博客</h1>
-    <p>{{tip}}</p>
+
+<section class="container" id="features">
+    <div class="blankslate blankslate blankslate-clean-background">
+        <h3>落月博客</h3>
+        <p>{{tip}}</p>
+    </div>
     <template v-if="!loadOk">
     <p>
         <i :class="loadingClass"></i>

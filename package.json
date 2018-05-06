@@ -45,6 +45,7 @@
     "github-syntax-light": "^0.5.0",
     "mobx": "^4.2.1",
     "primer": "^10.4.0",
+    "tocbot": "^4.3.0",
     "vue": "^2.4.4",
     "vue-router": "^3.0.1"
   }

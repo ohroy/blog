@@ -6,73 +6,88 @@
             <p>{{status}}
             </p>
         </div>
-        <div v-else class="docs-wrapper container">
-
-            <v-affix offset="0">
-            <section class="sidebar">
-
-                    <transition-group appear name="list" tag="ul">
-                    <!--<li v-for="(toc,index) in detail.rend.toc" v-bind:key="index">-->
-                        <!--<a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>-->
-                        <!--<ul v-if="toc.sub.length>0">-->
-                            <!--<li v-for="sub in toc.sub">-->
-                                <!--<a v-smooth-scroll :href="'#'+sub.title" v-html="sub.title"></a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                    </transition-group>
-                <ul>
-                    <li>
-                        <a v-smooth-scroll href="#top">返回顶部</a>
+        <div v-else class="container-lg d-flex">
+            <article class="col-md-8">
+                <h1 class="lh-condensed">
+                    {{detail.title}}
+                </h1>
+                <ul class="d-flex flex-wrap mt-1 mb-2 list-style-none text-gray">
+                    <li class="my-1 mr-4 no-wrap">
+                        <svg height="16" class="octicon octicon-calendar mr-1" aria-label="calendar" viewBox="0 0 14 16" version="1.1" width="14" role="img"><path fill-rule="evenodd" d="M13 2h-1v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H6v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H2c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 12H2V5h11v9zM5 3H4V1h1v2zm6 0h-1V1h1v2zM6 7H5V6h1v1zm2 0H7V6h1v1zm2 0H9V6h1v1zm2 0h-1V6h1v1zM4 9H3V8h1v1zm2 0H5V8h1v1zm2 0H7V8h1v1zm2 0H9V8h1v1zm2 0h-1V8h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1zm2 0h-1v-1h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1z"></path></svg>
+                        {{detail.created_at}}
                     </li>
+
+                    <li class="my-1 mr-4 no-wrap">
+                        <a class="d-flex flex-items-center text-gray no-underline" href="https://github.com/camicano" data-ga-click="User, click, text:camicano">
+                            <span class="d-inline-block v-align-middle overflow-hidden mr-1 rounded-1" style="width: 20px; height: 20px;"><img class="avatar avatar-small" src="https://avatars2.githubusercontent.com/camicano?v=3&amp;s=20" alt="camicano" srcset="https://avatars2.githubusercontent.com/camicano?v=3&amp;s=20 1x, https://avatars2.githubusercontent.com/camicano?v=3&amp;s=40 2x, https://avatars2.githubusercontent.com/camicano?v=3&amp;s=60 3x, https://avatars2.githubusercontent.com/camicano?v=3&amp;s=80 4x" width="20" height="20" data-proofer-ignore="true"></span>
+                            <span>camicano</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="my-1 no-wrap">
+                        <svg height="16" class="octicon octicon-file-directory mr-1" aria-label="file-directory" viewBox="0 0 14 16" version="1.1" width="14" role="img"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>
+                        Announcements
+                    </li>
+
                 </ul>
 
-            </section>
-            </v-affix>
-            <article>
-                <div class="Subhead">
-                    <div class="Subhead-heading">{{detail.title}}</div>
+
+                <div ref="markdown_body" class="markdown-body" v-html="detail.body_html">
                 </div>
-
-
-
-                <div class="markdown-body" v-html="detail.body_html">
-                </div>
-
-
             </article>
+            <div class="mt-md-3 d-none d-md-block col-md-3 offset-md-1">
+                <nav ref="markdown_toc" id="markdown-toc" class="toc toc-right js-toc relative z-1 transition--300 absolute pa4 is-position-fixed"></nav>
+            </div>
         </div>
-        <div id="comments">
+        <div id="comments" class="container mt-6 pb-4 border-top">
         </div>
     </section>
 </template>
 <style scoped lang="scss">
     @import "primer-markdown/index.scss";
+
 </style>
 
 <script>
     import 'github-syntax-light/lib/github-light.css'
     import * as gitment_css from '../style/gitment.css'
+    import '../style/toc.scss'
 import {
     github
 } from '../helpers/github'
-
-
-
+import Render from '../helpers/render'
 import Gitment from '../directives/gitment'
 
-import vAffix from './Affix.vue'
-
+import tocbot from 'tocbot'
 export default {
     name: 'Detail',
+    methods: {
+        _handleScroll () {
+            let $toc=this.$refs.markdown_toc;
+            let $body=this.$refs.markdown_body;
+            let rect=$body.getBoundingClientRect();
+            console.log(rect.top+rect.height,$toc.clientHeight);
+            if(rect.top+rect.height<$toc.clientHeight+100){
+                $toc.style.visibility='hidden';
+            }else {
+                $toc.style.visibility='visible';
+            }
+
+        }
+    },
     data() {
         return {
             loading: true,
             detail: {},
             status:'正在加载...',
+            has_toc:false,
         }
     },
     mounted() {
+        window.addEventListener('scroll', this._handleScroll, false)
+        window.addEventListener('resize', this._handleScroll, false)
         let flag=this.$route.params.id;
         if (this.loading)
             document.title = "loading ---- 青枫浦 Lite";
@@ -80,10 +95,29 @@ export default {
             id: flag, // optional
             meta:this.detail
         })
-        gitment.render('comments')
+        gitment.render('comments');
+
+    },
+    beforeDestory () {
+        window.removeEventListener('scorll', this._handleScroll, false)
+        window.removeEventListener('resize', this._handleScroll, false)
     },
     destroyed() {
         this.loading = true;
+    },
+    updated(){
+        if(!this.had_toc&&!this.loading){
+            Render.general_ids();
+            tocbot.init({
+                // Where to render the table of contents.
+                tocSelector: '#markdown-toc',
+                // Where to grab the headings to build the table of contents.
+                contentSelector: '.markdown-body',
+                // Which headings to grab inside of the contentSelector element.
+                headingSelector: 'h1, h2, h3',
+            });
+            this.had_toc=true;
+        }
     },
     created() {
         let flag=this.$route.params.id;
@@ -101,9 +135,6 @@ export default {
         );
 
 
-    },
-    components: {
-        vAffix
     }
 }
 
