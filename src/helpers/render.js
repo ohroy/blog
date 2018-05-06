@@ -4,7 +4,6 @@ const Render= {
             let headers = document.querySelectorAll('h' + i);
             headers.forEach((v, index, obj) => {
                 v.id = 'h_' + i + '_' + index;
-                console.log(v);
             })
         }
     }

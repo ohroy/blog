@@ -63,8 +63,11 @@ export default {
         _handleScroll () {
             let $toc=this.$refs.markdown_toc;
             let $body=this.$refs.markdown_body;
+            if(!$body){
+                return;
+            }
             let rect=$body.getBoundingClientRect();
-            console.log(rect.top+rect.height,$toc.clientHeight);
+
             if(rect.top+rect.height<$toc.clientHeight+100){
                 $toc.style.visibility='hidden';
             }else {
@@ -89,15 +92,6 @@ export default {
     mounted() {
         window.addEventListener('scroll', this._handleScroll, false)
         window.addEventListener('resize', this._handleScroll, false)
-        let flag=this.$route.params.id;
-        if (this.loading)
-            document.title = "loading ---- 青枫浦 Lite";
-        const gitment = new Gitment({
-            id: flag, // optional
-            meta:this.detail
-        })
-        gitment.render('comments');
-
     },
     beforeDestory () {
         window.removeEventListener('scorll', this._handleScroll, false)
@@ -118,6 +112,14 @@ export default {
                 headingSelector: 'h1, h2, h3',
             });
             this.had_toc=true;
+            let flag=this.$route.params.id;
+            if (this.loading)
+                document.title = "loading ---- 青枫浦 Lite";
+            const gitment = new Gitment({
+                id: flag, // optional
+                meta:this.detail
+            })
+            gitment.render('comments');
         }
     },
     created() {

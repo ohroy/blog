@@ -4,7 +4,7 @@ import {
 import {config} from '../config'
 import { http } from '../helpers/utils'
 const github = new EventEmitter()
-const itemsCache = Object.create(null);
+let itemsCache = Object.create(null);
 const author=config.user.name;
 const githubURl = '/repos/'+author+'/'+config.user.repo+'/issues';
 let listCache='';
