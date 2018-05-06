@@ -1,0 +1,23 @@
+nav.main {
+  height: 90px;
+  width: 100%;
+  background-color: #3C4145;
+  border-bottom: 1px solid #202326;
+}
+
+nav.main:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+nav.main a.brand {
+  color: #fff;
+  font-size: 21px;
+  width: 130px;
+  line-height: 90px;
+  &:hover{
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+  }
+}

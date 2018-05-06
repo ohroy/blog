@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resource from 'vue-resource'
 import AnchorScroll from './directives/anchor-scroll'
 
 import App from './components/App.vue'
 import Detail from './components/Detail.vue'
 import List from './components/List.vue'
 import Error from './components/Error.vue'
+import Filter from './filters/index'
 
+Vue.filter('date_format',Filter.date_format)
 
 // install router
 Vue.use(Router);
     //ajax
-Vue.use(Resource);
 Vue.use(AnchorScroll);
+
 
 const routes = [
     {

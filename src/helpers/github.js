@@ -1,13 +1,12 @@
 import {
     EventEmitter
 } from 'events'
-import config from '../config'
-
-import Vue from 'vue'
+import {config} from '../config'
+import { http } from '../helpers/utils'
 const github = new EventEmitter()
-const itemsCache = Object.create(null);
+let itemsCache = Object.create(null);
 const author=config.user.name;
-const githubURl = 'https://api.github.com/repos/'+author+'/'+config.user.repo+'/issues';
+const githubURl = '/repos/'+author+'/'+config.user.repo+'/issues';
 let listCache='';
 
 github.getList = function() {
@@ -15,10 +14,10 @@ github.getList = function() {
         if(listCache!=''){
             resolve(listCache);
         }
-        Vue.http.get(githubURl+'?creator='+author).then(
+        http.get(githubURl,{'creator':author}).then(
             (response) => {
-                listCache=response.body;
-                resolve(response.body);
+                listCache=response;
+                resolve(response);
             }, reject
         );
     });
@@ -30,10 +29,9 @@ github.getDetail = id => {
             console.log("bycache");
             resolve(itemsCache[id])
         } else {
-            Vue.http.get(githubURl + '/' + id).then(
+            http.get(githubURl + '/' + id).then(
                 (response) => {
-                    console.log(response);
-                    itemsCache[id] = response.body;
+                    itemsCache[id] = response;
                     console.log("by get");
                     resolve(itemsCache[id]);
                 }, reject

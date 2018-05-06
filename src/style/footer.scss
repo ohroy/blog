@@ -1,0 +1,16 @@
+footer.main {
+  padding: 35px 20px;
+  text-align: center;
+  border-top: 1px #e1e4e8 solid;
+  & p {
+    color: #aeaeae;
+    font-size: 16px;
+    margin-bottom: 10px;
+    & a {
+      color: #c6cbd1;
+      &:hover {
+        color: #959da5;
+      }
+    }
+  }
+}

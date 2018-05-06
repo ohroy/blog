@@ -1,10 +1,10 @@
 {
   "name": "superliteBlog",
-  "version": "2.1.0",
+  "version": "3.0.1",
   "description": "a vue with github api blog , just a page and super lite by rozbo",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --no-info --history-api-fallback --compress --port 4000 --open",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "dev": "npx webpack-dev-server --inline --hot --no-info --history-api-fallback --compress --port 4000",
+    "build": "npx webpack --mode=production --progress --hide-modules",
     "pub": "./pub.sh"
   },
   "repository": {
@@ -26,23 +26,27 @@
     "babel-runtime": "^6.26.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
-    "style-loader": "^0.18.2",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "url-loader": "^0.5.7",
+    "url-loader": "^1.0.1",
     "vue-hot-reload-api": "^2.1.0",
     "vue-html-loader": "^1.0.0",
-    "vue-loader": "^13.0.4",
-    "vue-style-loader": "^3.0.3",
+    "vue-loader": "^15.0.9",
+    "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2"
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "marked": "^0.3.6",
-    "prismjs": "^1.7.0",
+    "github-syntax-light": "^0.5.0",
+    "mobx": "^4.2.1",
+    "primer": "^10.4.0",
+    "tocbot": "^4.3.0",
     "vue": "^2.4.4",
-    "vue-resource": "^1.0.3",
-    "vue-router": "^2.1.1"
+    "vue-router": "^3.0.1"
   }
 }
