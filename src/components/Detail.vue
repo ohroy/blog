@@ -36,15 +36,13 @@
         </div>
     </section>
 </template>
-<style scoped lang="scss">
-    @import "primer-markdown/index.scss";
 
-</style>
 
 <script>
     import 'github-syntax-light/lib/github-light.css'
     import * as gitment_css from '../style/gitment.css'
     import '../style/toc.scss'
+    import "primer-markdown/index.scss";
 import {
     github
 } from '../helpers/github'

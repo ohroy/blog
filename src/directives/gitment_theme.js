@@ -114,7 +114,7 @@ function renderComments({ meta, comments, commentReactions, currentPage, user, e
             }
           <div class="gitment-comment-like-btn">${heartIcon} ${comment.reactions.heart || ''}</div>
         </div>
-        <div class="gitment-comment-body gitment-markdown">${comment.body_html}</div>
+        <div class="gitment-comment-body markdown-body">${comment.body_html}</div>
       </div>
     `
         const likeButton = commentItem.querySelector('.gitment-comment-like-btn')
@@ -233,16 +233,19 @@ function renderEditor({ user, error }, instance) {
           <textarea placeholder="Leave a comment" title="${disabledTip}" ${shouldDisable}></textarea>
         </div>
         <div class="gitment-editor-preview-field gitment-hidden">
-          <div class="gitment-editor-preview gitment-markdown"></div>
+          <div class="gitment-editor-preview markdown-body"></div>
         </div>
       </div>
     </div>
     <div class="gitment-editor-footer">
-      <a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
+      <div class="flash flash-warn">
+            <p><a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
         请使用<strong>markdown</strong>进行书写。
-      </a>
-      <small>没必要进行xss尝试，因为这个一个全静态的网站。</small>
-      <button class="gitment-editor-submit" title="${disabledTip}" ${shouldDisable}>Comment</button>
+      </a></p>
+        <p>没必要进行xss尝试，因为这个一个全静态的网站。</p>
+        <p>由于github的缓存的原因，你的评论可能需要几秒钟之后才会显示在这里</p>
+      </div>
+      <button class="gitment-editor-submit mt-4" title="${disabledTip}" ${shouldDisable}>Comment</button>
     </div>
   `
     if (user.login) {
