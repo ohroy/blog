@@ -6,12 +6,15 @@ import App from './components/App.vue'
 import Detail from './components/Detail.vue'
 import List from './components/List.vue'
 import Error from './components/Error.vue'
+import Filter from './filters/index'
 
+Vue.filter('date_format',Filter.date_format)
 
 // install router
 Vue.use(Router);
     //ajax
 Vue.use(AnchorScroll);
+
 
 const routes = [
     {
