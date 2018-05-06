@@ -204,7 +204,7 @@ class Gitment {
         return http.get('/user')
             .then((user) => {
                 this.state.user = user
-                localStorage.setItem(LS_USER_KEY, JSON.stringify(user))
+                localStorage.setItem(config.guest.user_key, JSON.stringify(user))
                 return user
             })
     }
