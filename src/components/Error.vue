@@ -1,52 +1,34 @@
 <template>
     <section class="panel statement dark">
-        <div class="content">
-            <div class="browser-window">
-                <div class="top-bar">
-                    <div class="circles">
-                        <div class="circle circle-red"></div>
-                        <div class="circle circle-yellow"></div>
-                        <div class="circle circle-green"></div>
-                    </div>
-                </div>
-                <div class="window-content" v-html="codes">
-                </div>
-            </div>
+        <div class="flash flash-error">
+            空空如也
         </div>
+        <hr class="mt-4">
+           <p>熟悉的陌生的这种感觉
+
+           </p><p>重复的曾经的那些情节
+
+           </p><p>也只是怀念
+
+           </p><p>一滴滴一点点一页一篇
+
+           </p><p>分手了也不过三百多天
+
+           </p><p>可我却害怕遇见
+
+           </p><p>我懵懵懂懂过了一年
+
+           </p><p>这一年似乎没有改变
+
+           </p><p>守着你离开后的世界
+
+           </p><p>空空如也</p>
 
     </section>
 </template>
 <script>
-import {
-    code
-} from '../helpers/render'
+import 'primer-alerts/index.scss'
 export default {
     name: 'Error',
-    computed:{
-    codes:function () {
-        let str=
-        `<?php
-
-            //输出404状态
-            header('HTTP/1.1 404 Not Found');
-            header("status: 404 Not Found");
-            //定义404数据
-            $array=(
-                'status'=>false,
-                'code'=>404,
-                'reason'=>'Not Found',
-                'remark'=>'雾霾太大了,这个页面根本看不清.',
-                'time'=>time(),
-                'try'=>'/list',
-                'contact'=>'rozbo'
-            );
-            //转换json
-            $json2show=json_encode($array);
-            //输出
-            die($json2show);
-        `;
-        return code(str,'php',true);
-        }
-    }
 }
 </script>
