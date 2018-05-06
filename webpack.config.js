@@ -1,8 +1,10 @@
 var webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path');
 
 module.exports = {
     entry: './src/main.js',
+    mode:'development',
     output: {
         path: path.resolve(__dirname, "static"),
         publicPath: '/static/',
@@ -17,10 +19,11 @@ module.exports = {
     module: {
         // avoid webpack trying to shim process
         noParse: /es6-promise\.js$/,
-        rules: [{
-            test: /\.vue$/,
-            loader: 'vue-loader'
-        },
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
             {
                 test: /\.js$/,
                 // excluding some local linked packages.
@@ -30,27 +33,42 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ['style-loader', 'css-loader']
+                use:[
+                    {
+                        loader: "style-loader" // creates style nodes from JS strings
+                    }, {
+                        loader: "css-loader" // translates CSS into CommonJS
+                    }
+                ],
             },
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
                 loader: 'url-loader',
-                query:{
-                    limit:50000,
-                    name:"[path][name].[ext]"
+                options: {
+                    limit: 50000,
+                    name: "[path][name].[ext]"
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "sass-loader" // compiles Sass to CSS
+                }]
             }
         ]
     },
+    plugins: [
+        // make sure to include the plugin!
+        new VueLoaderPlugin()
+    ]
 }
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.plugins = [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
+    module.exports.plugins.push(
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
@@ -58,8 +76,8 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
-                drop_console:true,
-                unused:true
+                drop_console: true,
+                unused: true
             },
             output: {
                 comments: false
@@ -67,8 +85,8 @@ if (process.env.NODE_ENV === 'production') {
             sourceMap: false
         }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
-    ]
+    )
 } else {
     module.exports.output.filename = "build.js";
-    //module.exports.devtool = '#source-map';
+    module.exports.devtool = '#source-map';
 }

@@ -11,15 +11,17 @@
         <router-view>
         </router-view>
     </section>
-    <footer class="main">
+    <footer class="main container">
         <p>This is A simple blog light style.</p>
         <p class="less-significant">say thanks to <a href="https://github.com/rozbo">Github</a></p>
     </footer>
 </div>
 </template>
 <script>
-import * as css from '../style/main.css'
-import * as gitment_css from '../style/gitment.css'
+import "primer/index.scss";
+import "primer-layout/index.scss";
+import "../style/nav.scss";
+import "../style/footer.scss";
 export default {
     name: 'app',
     data: function() {

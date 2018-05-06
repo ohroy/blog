@@ -12,14 +12,14 @@
             <section class="sidebar">
 
                     <transition-group appear name="list" tag="ul">
-                    <li v-for="(toc,index) in detail.rend.toc" v-bind:key="index">
-                        <a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>
-                        <ul v-if="toc.sub.length>0">
-                            <li v-for="sub in toc.sub">
-                                <a v-smooth-scroll :href="'#'+sub.title" v-html="sub.title"></a>
-                            </li>
-                        </ul>
-                    </li>
+                    <!--<li v-for="(toc,index) in detail.rend.toc" v-bind:key="index">-->
+                        <!--<a v-smooth-scroll :href="'#'+toc.title" v-html="toc.title"></a>-->
+                        <!--<ul v-if="toc.sub.length>0">-->
+                            <!--<li v-for="sub in toc.sub">-->
+                                <!--<a v-smooth-scroll :href="'#'+sub.title" v-html="sub.title"></a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
                     </transition-group>
                 <ul>
                     <li>
@@ -30,11 +30,13 @@
             </section>
             </v-affix>
             <article>
-             <h1>{{detail.title}}</h1>
+                <div class="Subhead">
+                    <div class="Subhead-heading">{{detail.title}}</div>
+                </div>
 
 
 
-                <div v-html="detail.rend.html">
+                <div class="markdown-body" v-html="detail.body_html">
                 </div>
 
 
@@ -44,14 +46,18 @@
         </div>
     </section>
 </template>
+<style scoped lang="scss">
+    @import "primer-markdown/index.scss";
+</style>
+
 <script>
+    import 'github-syntax-light/lib/github-light.css'
+    import * as gitment_css from '../style/gitment.css'
 import {
     github
 } from '../helpers/github'
-//import tocHelper from '../helpers/toc'
-import {
-    rend
-} from '../helpers/render'
+
+
 
 import Gitment from '../directives/gitment'
 
@@ -86,7 +92,7 @@ export default {
                 this.status='正在解析...';
                 this.loading = false;
                 this.detail = res;
-                this.detail.rend = rend(flag,this.detail.body);
+                //this.detail.html = ''//rend(flag,this.detail.body);
                 document.title = res.title;
             },
             (res) => {

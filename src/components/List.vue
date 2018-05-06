@@ -31,9 +31,7 @@ import {
 import
     * as iconfont
  from '../style/iconfont.css'
-import {
-    rend
-} from '../helpers/render'
+
 import {
     getTip
 } from '../helpers/tip'
@@ -65,7 +63,7 @@ export default {
     computed: {
         details: function() {
             for (let item of this.items) {
-                item.rend = rend(item.number,item.body);
+                item.rend = ',,,';//rend(item.number,item.body);
             }
             return this.items
         },
