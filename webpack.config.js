@@ -4,7 +4,6 @@ const path = require('path');
 
 module.exports = {
     entry: './src/main.js',
-    mode:'development',
     output: {
         path: path.resolve(__dirname, "static"),
         publicPath: '/static/',
@@ -65,28 +64,4 @@ module.exports = {
         // make sure to include the plugin!
         new VueLoaderPlugin()
     ]
-}
-
-if (process.env.NODE_ENV === 'production') {
-    module.exports.plugins.push(
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                drop_console: true,
-                unused: true
-            },
-            output: {
-                comments: false
-            },
-            sourceMap: false
-        }),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
-    )
-} else {
-    module.exports.output.filename = "build.js";
-    module.exports.devtool = '#source-map';
 }
