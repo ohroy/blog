@@ -166,6 +166,11 @@ class Gitment {
             })
     }
 
+    getIssue() {
+        if (this.state.meta.id) return Promise.resolve(this.state.meta)
+
+        return this.loadMeta()
+    }
 
 
     post(body) {

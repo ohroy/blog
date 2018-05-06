@@ -312,9 +312,6 @@ function renderEditor({ user, error }, instance) {
     return container
 }
 
-function renderFooter() {
-    return;
-}
 
 function render(state, instance) {
     const container = document.createElement('div')
@@ -323,8 +320,7 @@ function render(state, instance) {
     container.appendChild(instance.renderHeader(state, instance))
     container.appendChild(instance.renderComments(state, instance))
     container.appendChild(instance.renderEditor(state, instance))
-    container.appendChild(instance.renderFooter(state, instance))
     return container
 }
 
-export default { render, renderHeader, renderComments, renderEditor, renderFooter }
+export default { render, renderHeader, renderComments, renderEditor}
