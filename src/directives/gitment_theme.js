@@ -319,7 +319,7 @@ function renderEditor({ user, error }, instance) {
 function render(state, instance) {
     const container = document.createElement('div')
     container.lang = "en-US"
-    container.className = 'gitment-container gitment-root-container'
+    container.className = 'col-12 col-md-12'
     container.appendChild(instance.renderHeader(state, instance))
     container.appendChild(instance.renderComments(state, instance))
     container.appendChild(instance.renderEditor(state, instance))

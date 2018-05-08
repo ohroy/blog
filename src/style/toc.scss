@@ -1,4 +1,8 @@
 .toc {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
+  //height: calc(100vh - 4rem);
   overflow-y: auto;
 }
 
@@ -32,9 +36,7 @@ a.toc-link {
 }
 
 .is-position-fixed {
-  position: fixed !important;
-  top: 150px;
-  overflow:auto;
+
 }
 
 .is-active-link {

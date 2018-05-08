@@ -1,7 +1,7 @@
 <template>
-    <section class="panel statement dark">
+    <section class="container-lg px-3">
         <div class="flash flash-error">
-            空空如也
+            404 / Not Found;
         </div>
         <hr class="mt-4">
            <p>熟悉的陌生的这种感觉

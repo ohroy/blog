@@ -1,6 +1,6 @@
 <template>
 
-<section class="container" id="features">
+<section class="container-lg px-3" id="features">
     <div class="blankslate blankslate blankslate-clean-background">
         <h1 class="d-inline-block mr-2 mb-1">落月's 博客</h1>
         <p class="d-inline-block text-right mb-1">
@@ -8,14 +8,17 @@
         </p>
     </div>
     <template v-if="!loadOk">
-    <p>
-        <i :class="loadingClass"></i>
-    </p>
-    <p>
-        {{status}}
-    </p>
+        <div class="loading">
+            <p>
+                <i :class="loadingClass"></i>
+            </p>
+            <p>
+                {{status}}
+            </p>
+        </div>
+
     </template>
-    <div v-else class="blocks stacked">
+    <div v-else class="blocks stacked ">
         <hr class="mt-0 mb-4">
         <ul class="list-style-none border-left ml-3 pr-4" v-for="item in details">
             <li class="mb-4 clearfix">
