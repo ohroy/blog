@@ -1,19 +1,19 @@
 <template>
 <div id="app" class="docs scotchified">
-    <nav class="main mb-md-6">
-        <div class="container">
-
+    <nav class="main mb-6">
+        <div class="container-lg d-flex flex-justify-between pl-3">
             <router-link :to="'/list'" class="brand">
-                青枫浦 Lite</router-link>
+                <span class="h1"> 青枫浦 Lite</span>
+            </router-link>
         </div>
     </nav>
-    <section class="section container" id="top">
+    <section id="top">
         <router-view>
         </router-view>
     </section>
-    <footer class="main container">
-        <p>This is A simple blog light style.</p>
-        <p class="less-significant">say thanks to <a href="https://github.com/rozbo">Github</a></p>
+    <footer class="main container-lg">
+        <p>This is A light style blog base github api, open source on <a href="https://github.com/rozbo/blog">Github</a> by
+            <a href="https://github.com/rozbo">rozbo</a></p>
     </footer>
 </div>
 </template>

@@ -1,13 +1,13 @@
 <template>
-    <section>
-        <div v-if="loading" class="panel features">
+    <section class="">
+        <div v-if="loading" class="loading">
             <p>
                 <i class="iconfont icon-loading if-spin if-3x if-main"></i></p>
             <p>{{status}}
             </p>
         </div>
-        <div v-else class="container-lg d-flex">
-            <article class="col-md-8">
+        <div v-else class="container-lg px-3 d-flex">
+            <article class="col-12 col-md-8">
                 <h1 class="lh-condensed">
                     {{detail.title}}
                 </h1>
@@ -28,11 +28,11 @@
                 <div ref="markdown_body" class="markdown-body" v-html="detail.body_html">
                 </div>
             </article>
-            <div class="mt-md-3 d-none d-md-block col-md-3 offset-md-1">
+            <div class="d-none d-md-block col-md-3 offset-md-1">
                 <nav ref="markdown_toc" id="markdown-toc" class="toc toc-right js-toc relative z-1 transition--300 absolute pa4 is-position-fixed"></nav>
             </div>
         </div>
-        <div id="comments" class="container mt-6 pb-4 border-top">
+        <div id="comments" class="container-lg mt-3 px-3 d-flex border-top">
         </div>
     </section>
 </template>
@@ -88,8 +88,8 @@ export default {
         }
     },
     mounted() {
-        window.addEventListener('scroll', this._handleScroll, false)
-        window.addEventListener('resize', this._handleScroll, false)
+        //window.addEventListener('scroll', this._handleScroll, false)
+        //window.addEventListener('resize', this._handleScroll, false)
     },
     beforeDestory () {
         window.removeEventListener('scorll', this._handleScroll, false)
