@@ -29,7 +29,7 @@
                 </div>
             </article>
             <div class="d-none d-md-block col-md-3 offset-md-1">
-                <nav ref="markdown_toc" id="markdown-toc" class="toc toc-right js-toc relative z-1 transition--300 absolute pa4 is-position-fixed"></nav>
+                <div ref="markdown_toc" id="markdown-toc" class="toc"></div>
             </div>
         </div>
         <div id="comments" class="container-lg mt-3 px-3 d-flex border-top">
