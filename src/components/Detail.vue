@@ -58,21 +58,6 @@ export default {
         }
     },
     methods: {
-        _handleScroll () {
-            let $toc=this.$refs.markdown_toc;
-            let $body=this.$refs.markdown_body;
-            if(!$body){
-                return;
-            }
-            let rect=$body.getBoundingClientRect();
-
-            if(rect.top+rect.height<$toc.clientHeight+100){
-                $toc.style.visibility='hidden';
-            }else {
-                $toc.style.visibility='visible';
-            }
-
-        }
     },
     computed:{
         avatar(){
@@ -88,12 +73,8 @@ export default {
         }
     },
     mounted() {
-        //window.addEventListener('scroll', this._handleScroll, false)
-        //window.addEventListener('resize', this._handleScroll, false)
     },
     beforeDestory () {
-        window.removeEventListener('scorll', this._handleScroll, false)
-        window.removeEventListener('resize', this._handleScroll, false)
     },
     destroyed() {
         this.loading = true;
