@@ -6,3 +6,4 @@ CNAME
 publish
 *.log
 *.iml
+v8-compile-cache*

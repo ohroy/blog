@@ -7,12 +7,12 @@ import Detail from './components/Detail.vue'
 import List from './components/List.vue'
 import Error from './components/Error.vue'
 import Filter from './filters/index'
-
-Vue.filter('date_format',Filter.date_format)
+import Render from "./helpers/render";
+Vue.filter('date_format', Filter.date_format)
 
 // install router
 Vue.use(Router);
-    //ajax
+//ajax
 Vue.use(AnchorScroll);
 
 
@@ -46,15 +46,10 @@ var router = new Router({
     routes: routes,
     mode: 'history'
 })
-
-
-// router.beforeEach(function () {
-//     window.scrollTo(0, 0);
-// })
-
-// router.redirect({
-//     '*': '/list'
-// })
+router.beforeEach((to, form, next) => {
+    Render.loading_end();
+    next();
+})
 
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，

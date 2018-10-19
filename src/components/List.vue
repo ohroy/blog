@@ -1,24 +1,10 @@
 <template>
-
+  <transition name="fade">
 <section class="container-lg px-3" id="features">
     <div class="blankslate blankslate blankslate-clean-background">
-        <h1 class="d-inline-block mr-2 mb-1">落月's 博客</h1>
-        <p class="d-inline-block text-right mb-1">
-            {{tip}}
-        </p>
+        <h3 class="d-inline-block mr-2 mb-1">{{tip}}</h3>
     </div>
-    <template v-if="!loadOk">
-        <div class="loading">
-            <p>
-                <i :class="loadingClass"></i>
-            </p>
-            <p>
-                {{status}}
-            </p>
-        </div>
-
-    </template>
-    <div v-else class="blocks stacked ">
+    <div v-if="loadOk" class="blocks stacked ">
         <hr class="mt-0 mb-4">
         <ul class="list-style-none border-left ml-3 pr-4" v-for="item in details">
             <li class="mb-4 clearfix">
@@ -27,61 +13,62 @@
             </div>
             <div class="overflow-hidden mt-1 pl-2">
                 {{item.created_at|date_format}}
-                <h3 class="lh-condensed mt-1">
+                <h4 class="lh-condensed mt-1">
                     <router-link :to="'/detail/'+item.number">{{item.title}}</router-link>
-                </h3>
+                </h4>
             </div>
         </li>
         </ul>
 
     </div>
 </section>
+  </transition>
 </template>
 
 <script>
-import {
-    github
-} from '../helpers/github'
+import { github } from "../helpers/github";
 
-import {config} from "../config";
-import
-    * as iconfont
- from '../style/iconfont.css'
+import { config } from "../config";
 
-import {
-    getTip
-} from '../helpers/tip'
+import Tip from "../helpers/tip";
+
+import Render from "../helpers/render";
 export default {
-    name: 'List',
-    data() {
-        return {
-            loadOk: false,
-            items: [],
-            status:'Loading...',
-            loadingClass:'iconfont icon-loading if-spin if-3x if-main',
-            title:config.site.name
-        }
-    },
-    mounted() {
-        document.title =config.site.name;
-    },
-    created() {
-        github.getList().then(
-            (res) => {
-                this.items = res;
-                this.loadOk = true;
-            },
-            (res) => {
-                this.status=`Error:${res.statusText}`;
-                this.loadingClass='iconfont icon-loading if-3x if-main';
-            }
-        )
-    },
-    computed: {
-        details: function() {
-            return this.items
-        },
-        tip:getTip
+  name: "List",
+  data() {
+    return {
+      loadOk: false,
+      items: [],
+      status: "Loading...",
+      loadingClass: "iconfont icon-loading if-spin if-3x if-main",
+      title: config.site.name,
+      tip: ""
+    };
+  },
+  mounted() {
+    Render.loading_start();
+    document.title = config.site.name;
+  },
+  created() {
+    github.getList().then(
+      res => {
+        this.items = res;
+        this.loadOk = true;
+        Render.loading_end();
+      },
+      res => {
+        this.status = `Error:${res.statusText}`;
+        this.loadingClass = "iconfont icon-loading if-3x if-main";
+      }
+    );
+    Tip.getHitokoto().then(res => {
+      this.tip = res;
+    });
+  },
+  computed: {
+    details: function() {
+      return this.items;
     }
-}
+  }
+};
 </script>

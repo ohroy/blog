@@ -1,12 +1,7 @@
 <template>
+  <transition name="fade">
     <section class="">
-        <div v-if="loading" class="loading">
-            <p>
-                <i class="iconfont icon-loading if-spin if-3x if-main"></i></p>
-            <p>{{status}}
-            </p>
-        </div>
-        <div v-else class="container-lg px-3 d-flex">
+        <div v-if="!loading" class="container-lg px-3 d-flex">
             <article class="col-12 col-md-8">
                 <h1 class="lh-condensed">
                     {{detail.title}}
@@ -35,90 +30,85 @@
         <div id="comments" class="container-lg mt-3 px-3 d-flex border-top">
         </div>
     </section>
+      </transition>
 </template>
 
 
 <script>
-    import 'github-syntax-light/lib/github-light.css'
-    import * as gitment_css from '../style/gitment.css'
-    import '../style/toc.scss'
-    import "primer-markdown/index.scss";
-import {
-    github
-} from '../helpers/github'
-import Render from '../helpers/render'
-import Gitment from '../directives/gitment'
+import "github-syntax-light/lib/github-light.css";
+import * as gitment_css from "../style/gitment.css";
+import "../style/toc.scss";
+import "primer-markdown/index.scss";
+import { github } from "../helpers/github";
+import Render from "../helpers/render";
+import Gitment from "../directives/gitment";
 
-import tocbot from 'tocbot'
+import tocbot from "tocbot";
 export default {
-    name: 'Detail',
-    filters:{
-        'fill_user_url':(v)=>{
-            return 'https://github.com/'+v
-        }
-    },
-    methods: {
-    },
-    computed:{
-        avatar(){
-            return this.detail.user.avatar_url + "&s=20"
-        }
-    },
-    data() {
-        return {
-            loading: true,
-            detail: {},
-            status:'正在加载...',
-            has_toc:false,
-        }
-    },
-    mounted() {
-    },
-    beforeDestory () {
-    },
-    destroyed() {
-        this.loading = true;
-    },
-    updated(){
-        if(!this.had_toc&&!this.loading){
-            Render.general_ids();
-            tocbot.init({
-                // Where to render the table of contents.
-                tocSelector: '#markdown-toc',
-                // Where to grab the headings to build the table of contents.
-                contentSelector: '.markdown-body',
-                // Which headings to grab inside of the contentSelector element.
-                headingSelector: 'h1, h2, h3',
-            });
-            this.had_toc=true;
-            let flag=this.$route.params.id;
-            if (this.loading)
-                document.title = "loading ---- 青枫浦 Lite";
-            const gitment = new Gitment({
-                id: flag, // optional
-                meta:this.detail
-            })
-            gitment.render('comments');
-        }
-    },
-    created() {
-        let flag=this.$route.params.id;
-        github.getDetail(flag).then(
-            (res) => {
-                this.status='正在解析...';
-                this.loading = false;
-                this.detail = res;
-                //this.detail.html = ''//rend(flag,this.detail.body);
-                document.title = res.title;
-            },
-            (res) => {
-                this.status='从服务端数据失败...';
-            }
-        );
-
-
+  name: "Detail",
+  filters: {
+    fill_user_url: v => {
+      return "https://github.com/" + v;
     }
-}
-
+  },
+  methods: {},
+  computed: {
+    avatar() {
+      return this.detail.user.avatar_url + "&s=20";
+    }
+  },
+  data() {
+    return {
+      loading: true,
+      detail: {},
+      status: "正在加载...",
+      has_toc: false
+    };
+  },
+  mounted() {
+    Render.loading_start();
+  },
+  beforeDestory() {},
+  destroyed() {
+    this.loading = true;
+  },
+  updated() {
+    if (!this.had_toc && !this.loading) {
+      Render.general_ids();
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: "#markdown-toc",
+        // Where to grab the headings to build the table of contents.
+        contentSelector: ".markdown-body",
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: "h1, h2, h3"
+      });
+      this.had_toc = true;
+      let flag = this.$route.params.id;
+      if (this.loading) document.title = "loading ---- 青枫浦 Lite";
+      const gitment = new Gitment({
+        id: flag, // optional
+        meta: this.detail
+      });
+      gitment.render("comments");
+    }
+  },
+  created() {
+    let flag = this.$route.params.id;
+    github.getDetail(flag).then(
+      res => {
+        this.status = "正在解析...";
+        this.loading = false;
+        this.detail = res;
+        //this.detail.html = ''//rend(flag,this.detail.body);
+        document.title = res.title;
+        Render.loading_end();
+      },
+      res => {
+        this.status = "从服务端数据失败...";
+      }
+    );
+  }
+};
 </script>
 
