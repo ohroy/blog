@@ -1,6 +1,6 @@
 import { autorun, observable } from 'mobx'
 
-import { config,NOT_INITIALIZED_ERROR } from '../config'
+import { config, NOT_INITIALIZED_ERROR } from '../config'
 import { getTargetContainer, http, Query } from '../helpers/utils'
 import defaultTheme from './gitment_theme'
 
@@ -60,7 +60,7 @@ class Gitment {
             repo: config.user.repo,
             perPage: 20,
             maxCommentHeight: 250,
-            meta:{}
+            meta: {}
         }, options)
 
         this.useTheme(this.theme)
@@ -102,7 +102,7 @@ class Gitment {
             }, options)
 
             this.state.user.isLoggingIn = true
-            http.post('https://github.com/login/oauth/access_token', {
+            http.post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', {
                 code,
                 client_id,
                 client_secret,
@@ -187,13 +187,13 @@ class Gitment {
     }
 
     loadMeta() {
-        this.state.meta=this.meta;
+        this.state.meta = this.meta;
         return this.meta;
     }
 
     loadComments(page = this.state.currentPage) {
         const { id, owner, repo } = this
-        return http.get(`/repos/${owner}/${repo}/issues/${id}/comments`,{ page, per_page: this.perPage })
+        return http.get(`/repos/${owner}/${repo}/issues/${id}/comments`, { page, per_page: this.perPage })
             .then((comments) => {
                 this.state.comments = comments
                 return comments

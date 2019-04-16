@@ -39,6 +39,7 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "@primer/css": "^12.2.2",
     "github-syntax-light": "^0.5.0",
     "mobx": "^5.5.0",
     "primer": "^10.8.1",
