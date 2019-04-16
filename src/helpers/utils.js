@@ -1,4 +1,4 @@
-import {config} from '../config'
+import { config } from '../config'
 
 export const isString = s => toString.call(s) === '[object String]'
 
@@ -38,19 +38,19 @@ export const Query = {
 }
 
 function ajaxFactory(method) {
-    return function(apiPath, data = {}, base = 'https://api.github.com') {
+    return function (apiPath, data = {}, base = 'https://api.github.com') {
         const req = new XMLHttpRequest()
         const token = localStorage.getItem(config.guest.access_token_key)
 
         let url = `${base}${apiPath}`
-        let client_auth={
-            'client_id':config.user.client_id,
-            'client_secret':config.user.client_secret
+        let client_auth = {
+            'client_id': config.user.client_id,
+            'client_secret': config.user.client_secret
         }
         url += Query.stringify(client_auth);
         let body = null
         if (method === 'GET' || method === 'DELETE') {
-            url += Query.stringify(data,'&');
+            url += Query.stringify(data, '&');
         }
 
 
@@ -80,6 +80,7 @@ function ajaxFactory(method) {
         if (method !== 'GET' && method !== 'DELETE') {
             body = JSON.stringify(data)
             req.setRequestHeader('Content-Type', 'application/json')
+            req.setRequestHeader('Accept', 'application/json')
         }
 
         req.send(body)
