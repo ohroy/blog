@@ -10,24 +10,15 @@ before_install:
   - git config --global user.name "${gitconf_username}"
   - git config --global user.email "${gitconf_email}"
 
-
 install:
   - "npm install"
 
 script:
   #然后编辑发布线上版本
   - npm run build
-  - mkdir publish
-  - cp ./static ./publish/static -rf
-  - cp ./index.html ./publish/index.html -rf
-  - echo "blog.zz173.com" > ./publish/CNAME
-   #进入gh-pages发布逻辑
-  - cd publish
-   # 开始计算js的新名字
-  - jsName=$(ls static|grep \.js)
-   #jsName="${jsName}?sign=$(date +%s)"
-  - echo "modfiy js filename to:$jsName"
-  - sed -i "s/build\.js/$jsName/g" ./index.html
+  - echo "blog.zz173.com" > ./dist/CNAME
+    #进入gh-pages发布逻辑
+  - cd dist
   - cp index.html 404.html
   - echo "" > .gitignore
   - git init
@@ -35,11 +26,7 @@ script:
   - git commit -am "publish"
   - git push --force --quiet https://${github_token}@${github_ref} master:gh-pages
   - cd ../
-   # 清理资源
-  - rm -rf ./publish
-  - rm -rf ./static
   - echo "everything ok!"
-
 
 branches:
   only:

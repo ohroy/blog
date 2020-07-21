@@ -1,50 +1,39 @@
 {
-  "name": "superliteBlog",
-  "version": "3.0.9",
-  "description": "a vue with github api blog , just a page and super lite by rozbo",
+  "name": "vue-next",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --mode=development --output-filename='build.js'  --inline --hot --no-info --history-api-fallback --compress --port 4000",
-    "build": "webpack --mode=production --progress --hide-modules"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rozbo/blog.git"
-  },
-  "author": "rozbo",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rozbo/blog/issues"
-  },
-  "homepage": "https://blog.zz173.com",
-  "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
-    "babel-loader": "^8.0.4",
-    "css-loader": "^1.0.0",
-    "node-sass": "^4.9.4",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "url-loader": "^1.1.2",
-    "vue-hot-reload-api": "^2.3.1",
-    "vue-html-loader": "^1.2.4",
-    "vue-loader": "^15.4.2",
-    "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.21.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@primer/css": "^12.2.2",
+    "@primer/css": "^15.0.0",
+    "core-js": "^3.6.5",
     "github-syntax-light": "^0.5.0",
-    "mobx": "^5.5.0",
-    "primer": "^10.8.1",
-    "tocbot": "^4.4.0",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "mobx": "^5.15.4",
+    "primer": "^11.0.0",
+    "tocbot": "^4.11.2",
+    "vue": "^3.0.0-rc.2",
+    "vue-class-component": "^7.2.4",
+    "vue-property-decorator": "^9.0.0",
+    "vue-router": "^4.0.0-alpha.6"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "@vue/cli-plugin-babel": "~4.4.6",
+    "@vue/cli-plugin-eslint": "~4.4.6",
+    "@vue/cli-plugin-router": "~4.4.6",
+    "@vue/cli-plugin-typescript": "~4.4.6",
+    "@vue/cli-service": "~4.4.6",
+    "@vue/compiler-sfc": "^3.0.0-rc.2",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "eslint": "^7.5.0",
+    "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.2",
+    "typescript": "~3.9.7",
+    "vue-cli-plugin-vue-next": "~0.1.3"
   }
 }
