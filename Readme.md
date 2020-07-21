@@ -1,24 +1,15 @@
-# vue-next
+# blog lite v4
 
-## Project setup
-```
-yarn install
-```
+本项目是基于`github api`和`vue`实现的单页面博客。之前介绍过的，这里不再重复了，可以看之前的说明来了解。
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## 之前的版本
 
-### Compiles and minifies for production
-```
-yarn build
-```
+- [v1](1.0.0.md)
+- [v2](v2.md)
+- [v3](v3.md)
 
-### Lints and fixes files
-```
-yarn lint
-```
+## 升级了什么?
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+此次使用最新的`vue3-rc.2`，并且重构为`typescript`.
+
+## 技术细节
