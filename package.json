@@ -12,7 +12,6 @@
     "core-js": "^3.6.5",
     "github-syntax-light": "^0.5.0",
     "mobx": "^5.15.4",
-    "primer": "^11.0.0",
     "tocbot": "^4.11.2",
     "vue": "^3.0.0-rc.2",
     "vue-class-component": "^7.2.4",

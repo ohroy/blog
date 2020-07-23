@@ -1,10 +1,10 @@
 <template>
   <transition name="fade">
     <section class="container-lg px-3" id="features">
-      <div class="blankslate blankslate blankslate-clean-background">
-        <h3 class="d-inline-block mr-2 mb-1">{{tip}}</h3>
-      </div>
-      <div v-if="loadOk" class="blocks stacked">
+      <div class="blankslate">
+  <h3>{{tip.tip}}</h3>
+  <p>---- {{tip.from}}</p>
+</div><div v-if="loadOk" class="blocks stacked">
         <hr class="mt-0 mb-4" />
         <ul
           class="list-style-none border-left ml-3 pr-4"
@@ -34,7 +34,7 @@
             <div class="overflow-hidden mt-1 pl-2">
               {{date_format(item.created_at)}}
               <h4 class="lh-condensed mt-1">
-                <router-link :to="'/detail/'+item.number">{{item.title}}</router-link>
+                <span class="Label mr-2 Label--orange" v-if="item.isTop">Top</span><router-link :to="'/detail/'+item.number">{{item.title}}</router-link>
               </h4>
             </div>
           </li>
@@ -59,7 +59,10 @@ export default {
       status: "Loading...",
       loadingClass: "iconfont icon-loading if-spin if-3x if-main",
       title: config.site.name,
-      tip: ""
+      tip: {
+        tip:"时光带有了一切，却唯独留下了我。",
+        from:'佚名'
+      },
     };
   },
   mounted() {

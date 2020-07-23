@@ -56,7 +56,6 @@
 import "github-syntax-light/lib/github-light.css";
 import "../style/gitment.scss";
 import "../style/toc.scss";
-import "primer-markdown/index.scss";
 import { github } from "../helpers/github";
 import Render from "../helpers/render";
 import Gitment from "../directives/gitment";
