@@ -48,10 +48,10 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 });
-// router.beforeEach((_to, _form, next) => {
-//     Render.loading_start();
-//     next();
-// })
+router.beforeEach((_to, _form, next) => {
+    Render.loading_end();
+    next();
+})
 // router.afterEach((to, from) => {
 //       // Render.loading_start();
 // })
