@@ -41,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '/:data(.*)',
-        component: Error
+        component: List
     },
 ]
 

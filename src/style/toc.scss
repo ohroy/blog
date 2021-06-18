@@ -1,13 +1,16 @@
 .toc {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 4rem;
-  //height: calc(100vh - 4rem);
-  overflow-y: hidden;
+  overflow-y: auto;
+  transform: translateX(0);
+  right: 50%;
+  margin-right: 370px;
+  position: fixed !important;
+  top: 150px;
 }
 
 .toc > .toc-list {
   overflow: hidden;
+  position: relative;
+
   li {
     list-style: none;
   }
@@ -34,7 +37,8 @@ a.toc-link {
 }
 
 .is-position-fixed {
-
+  position: fixed !important;
+  top: 0;
 }
 
 .is-active-link {
@@ -53,12 +57,5 @@ a.toc-link {
 }
 
 .is-active-link::before {
-  background-color: #008B8B;
+  background-color: #54BC4B;
 }
-
-.toc-icon {
-  position: fixed;
-  top: 0;
-  right: 0;
-}
-

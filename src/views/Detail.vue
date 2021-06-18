@@ -1,59 +1,31 @@
 <template>
   <transition name="fade">
-    <section class>
-      <div v-if="!loading" class="container-lg px-3 d-flex">
-        <article class="col-12 col-md-8">
-          <h1 class="lh-condensed">{{ detail.title }}</h1>
-          <ul class="d-flex flex-wrap mt-1 mb-2 list-style-none text-gray">
-            <li class="my-1 mr-4 no-wrap">
-              <svg
-                  height="16"
-                  class="octicon octicon-calendar mr-1"
-                  aria-label="calendar"
-                  viewBox="0 0 14 16"
-                  version="1.1"
-                  width="14"
-                  role="img"
-              >
-                <path
-                    fill-rule="evenodd"
-                    d="M13 2h-1v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H6v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H2c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 12H2V5h11v9zM5 3H4V1h1v2zm6 0h-1V1h1v2zM6 7H5V6h1v1zm2 0H7V6h1v1zm2 0H9V6h1v1zm2 0h-1V6h1v1zM4 9H3V8h1v1zm2 0H5V8h1v1zm2 0H7V8h1v1zm2 0H9V8h1v1zm2 0h-1V8h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1zm2 0h-1v-1h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1z"
-                />
-              </svg>
-              {{ createAt }}
-            </li>
 
-            <li class="my-1 mr-4 no-wrap">
-              <a class="d-flex flex-items-center text-gray no-underline" :href="userLink">
-                <span
-                    class="d-inline-block v-align-middle overflow-hidden mr-1 rounded-1"
-                    style="width: 20px; height: 20px;"
-                >
-                  <img
-                      class="avatar avatar-small"
-                      :src="avatar"
-                      :alt="detail.user.login"
-                      data-proofer-ignore="true"
-                  />
-                </span>
-                <span>{{ detail.user.login }}</span>
-              </a>
-            </li>
-          </ul>
-          <div ref="markdown_body" class="markdown-body" v-html="detail.body_html"></div>
-        </article>
-        <div class="d-none d-md-block col-md-3 offset-md-1">
-          <div ref="markdown_toc" id="markdown-toc" class="toc"></div>
-        </div>
+    <section class="page detail" v-virtual-scroller @x-scroll="scroll" v-toc>
+      <div>
+      <div id="post" v-if="!loading">
+        <Back></Back>
+        <h1>{{ detail.title }}</h1>
+          <p>write at<span> {{ createAt }}</span>, by
+            <span>
+                {{ detail.user.login }}</span>
+          </p>
+        <div ref="markdown_body" class="markdown-body" v-html="detail.body_html"></div>
       </div>
+
       <div id="comments" class="container-lg mt-3 px-3 d-flex border-top"></div>
+        <Footer></Footer>
+      </div>
+
+
     </section>
   </transition>
+
+  <div id="markdown-toc" class="toc"></div>
 </template>
 
 
 <script lang="ts">
-import "github-syntax-light/lib/github-light.css";
 import "../style/gitment.scss";
 import "../style/toc.scss";
 import { github } from "../helpers/github";
@@ -61,27 +33,43 @@ import Render from "../helpers/render";
 import Gitment from "../directives/gitment";
 import { date_format } from "@/helpers/utils";
 import tocbot from "tocbot";
+import {defineComponent,onUpdated,onUnmounted,onMounted} from "vue";
+import Footer from "@/components/Footer.vue";
+import Back from "@/components/Back.vue";
 
-export default {
+export default defineComponent({
   name: "Detail",
-  methods: {},
+  components: {Footer,Back},
+  loading: true,
+  status: "正在加载...",
+  has_toc: false,
+  methods: {
+    scroll(event) {
+      if(this.topBar!=null) {
+        const {current, total} = event.detail;
+        (this.topBar as any).style.width = `${(current / total) * 100}%`
+      }
+    }
+  },
   computed: {
     userLink(): string {
       return "https://github.com/" + this.detail.user.login;
     },
-    createAt() {
+    createAt():string {
       return date_format(this.detail.created_at);
     },
-    avatar() {
+    avatar():string {
       return this.detail.user.avatar_url + "&s=20";
     }
   },
   data() {
     return {
+      had_toc: false,
       loading: true,
-      detail: {},
+      detail: {} as any,
       status: "正在加载...",
-      has_toc: false
+      has_toc: false,
+      topBar: document.querySelector('#bar')
     };
   },
   mounted() {
@@ -93,17 +81,7 @@ export default {
   watch: {
     detail: {
       handler(val, oldVal) {
-        if (!this.had_toc && !this.loading) {
-          Render.general_ids();
-          tocbot.init({
-            // Where to render the table of contents.
-            tocSelector: "#markdown-toc",
-            // Where to grab the headings to build the table of contents.
-            contentSelector: ".markdown-body",
-            // Which headings to grab inside of the contentSelector element.
-            headingSelector: "h1, h2, h3"
-          });
-          this.had_toc = true;
+        if (!this.loading) {
           let flag = this.$route.params.id;
           if (this.loading) document.title = "loading ---- 青枫浦 Lite";
           const gitment = new Gitment({
@@ -131,6 +109,6 @@ export default {
         }
     );
   }
-};
+});
 </script>
 

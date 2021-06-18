@@ -37,7 +37,7 @@ export const Query = {
 };
 
 function ajaxFactory(method) {
-    return function (apiPath, data = {}, base = "https://api.github.com") {
+    return function (apiPath, data = {}, base = "https://api.github.com"):Promise<any> {
         const req = new XMLHttpRequest();
         const token = localStorage.getItem(config.guest.access_token_key);
 

@@ -1,23 +1,13 @@
-nav.main {
-  height: 90px;
+#bar {
+  z-index: 5;
+  position: absolute;
+  box-sizing: border-box;
+  border-right: 10px solid #fff;
+  border-left: 10px solid #fff;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: #3C4145;
-  border-bottom: 1px solid #202326;
-}
-
-nav.main:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-nav.main a.brand {
-  color: #fff;
-  font-size: 21px;
-  width: 130px;
-  line-height: 90px;
-  &:hover{
-    color: rgba(255,255,255,.7);
-    text-decoration: none;
-  }
+  height: 3px;
+  background: #3f4d56;
+  transition: all 1s ease;
 }

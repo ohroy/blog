@@ -1,6 +1,25 @@
+@import "./reset";
 @import "./var.scss";
-a {
-    color:$a-color;
+@import "./nav";
+@import "./footer";
+
+@import "posts";
+@import "post";
+@import "transition";
+@import "./slogan";
+
+.page > div {
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 0 20px;
+}
+.markdown-body {
+  font-family: apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,PingFang SC,Microsoft YaHei,sans-serif;
+  font-size: 14px;
+
+  .highlight {
+    font-size: 15px;
+  }
 }
 .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;

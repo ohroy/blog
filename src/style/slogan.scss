@@ -1,0 +1,52 @@
+#slogan {
+  text-align: center;
+
+  & > a {
+    display: inline-block;
+  }
+
+  img {
+    @media (max-width: 800px) {
+      width: 75px;
+      height: 75px;
+      margin-top: 40px;
+    }
+
+    padding: 4px;
+    border: 1px solid #eaeaea;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 70px auto 0;
+    border-radius: 50%;
+  }
+
+  h1 {
+    @media (max-width: 800px) {
+      font-size: 20px;
+    }
+
+    font-size: 26px;
+    margin-top: 20px;
+    color: #42505a;
+    font-weight: 600;
+  }
+
+  p {
+    @media (max-width: 800px) {
+      font-size: 14px;
+    }
+    color: #42505a;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 14px 20px 0px;
+  }
+  p:after {
+    display: block;
+    margin: 16px auto;
+    width: 50%;
+    content: '';
+    height: 1px;
+    background: #f1f1f1;
+  }
+}
