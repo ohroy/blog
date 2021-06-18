@@ -34,16 +34,16 @@ jobs:
           ${{ runner.os }}-node-
     - run: npm install
     - run: npm run build
-    - run: echo "blog.zz173.com" > ./dist/CNAME
-    - run: cd dist
-    - run: cp index.html 404.html
-    - run: echo "" > .gitignore
     - run: |
+        cd dist
+        echo "blog.zz173.com" > CNAME
+        cp index.html 404.html
+        echo "" > .gitignore
         git config --local user.email "${{github.run_id}}+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-    - run: git init
-    - run: git add .
-    - run: git commit -am "publish"
-    - run: git push --force --quiet https://${{github.actor}}:${{ secrets.token }}@github.com/${{github.repository}}.git master:gh-pages
-    - run: cd ../
-    - run: echo "everything ok!"
+        git init
+        git add .
+        git commit -am "publish"
+        git push --force --quiet https://${{github.actor}}:${{ secrets.token }}@github.com/${{github.repository}}.git master:gh-pages
+        cd ../
+        echo "everything ok!"
