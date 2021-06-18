@@ -38,6 +38,9 @@ jobs:
     - run: cd dist
     - run: cp index.html 404.html
     - run: echo "" > .gitignore
+    - run: |
+        - git config --local user.email "${{github.run_id}}+github-actions[bot]@users.noreply.github.com"
+        - git config --local user.name "github-actions[bot]"
     - run: git init
     - run: git add .
     - run: git commit -am "publish"
