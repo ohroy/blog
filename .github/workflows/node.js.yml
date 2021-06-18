@@ -39,9 +39,9 @@ jobs:
         echo "blog.zz173.com" > CNAME
         cp index.html 404.html
         echo "" > .gitignore
+        git init
         git config --local user.email "${{github.run_id}}+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git init
         git add .
         git commit -am "publish"
         git push --force --quiet https://${{github.actor}}:${{ secrets.token }}@github.com/${{github.repository}}.git master:gh-pages
