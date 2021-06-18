@@ -44,6 +44,6 @@ jobs:
     - run: git init
     - run: git add .
     - run: git commit -am "publish"
-    - run: git push --force --quiet https://${{github.actor}}:${{ secrets.token }}@github.com/${REPOSITORY}.git master:gh-pages
+    - run: git push --force --quiet https://${{github.actor}}:${{ secrets.token }}@github.com/${{github.repository}}.git master:gh-pages
     - run: cd ../
     - run: echo "everything ok!"
