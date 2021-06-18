@@ -44,6 +44,6 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git add .
         git commit -am "publish"
-        git push --force --quiet https://${{github.actor}}:${{ secrets.token }}@github.com/${{github.repository}}.git master:gh-pages
+        git push --force --quiet https://${{github.actor}}:${{ github.token }}@github.com/${{github.repository}}.git master:gh-pages
         cd ../
         echo "everything ok!"
