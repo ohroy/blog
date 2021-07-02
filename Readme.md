@@ -1,15 +1,28 @@
-# blog lite v4
 
-本项目是基于`github api`和`vue`实现的单页面博客。之前介绍过的，这里不再重复了，可以看之前的说明来了解。
+## A blog based on github issue
 
-## 之前的版本
+
+## usage
+
+fork this project and change the `config.js` to your own github username and repo.
+
+Then build it and push the static pages to your github pages.
+
+If you want to use the github action for `CI/CD`, you also should change the repo url in `.github/.github/workflows/github_page.yaml`
+
+
+
+## History
+If you want use to old version, checkout it in [https://github.com/rozbo/blog/releases](https://github.com/rozbo/blog/releases)
+and touch the doc with
 
 - [v1](1.0.0.md)
 - [v2](v2.md)
 - [v3](v3.md)
+- [v4](v4.md)
 
-## 升级了什么?
 
-此次使用最新的`vue3-rc.2`，并且重构为`typescript`.
+## Sponsor
+The project is developing by [JetBrains Ide](https://www.jetbrains.com/?from=puck)
 
-## 技术细节
+[![](https://www.jetbrains.com/company/brand/img/logo1.svg)](https://www.jetbrains.com/?from=puck)
