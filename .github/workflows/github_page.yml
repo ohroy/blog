@@ -1,11 +1,14 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: github_page ci
 
+# ref: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
 on:
   push:
-    branches: [ master ]
+    tags:
+      - *
+    #branches: [ master ]
   pull_request:
     branches: [ master ]
 
