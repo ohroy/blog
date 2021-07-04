@@ -1,6 +1,7 @@
 
 ## A blog based on github issue
 
+[![github_page ci](https://github.com/rozbo/blog/actions/workflows/github_page.yml/badge.svg)](https://github.com/rozbo/blog/actions/workflows/github_page.yml)
 
 ## usage
 
