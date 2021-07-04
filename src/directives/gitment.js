@@ -273,68 +273,6 @@ class Gitment {
         return this.loadComments(page)
     }
 
-    like() {
-        if (!this.accessToken) {
-            alert('Login to Like')
-            return Promise.reject()
-        }
-
-        const { owner, repo } = this
-
-        return http.post(`/repos/${owner}/${repo}/issues/${this.state.meta.number}/reactions`, {
-            content: 'heart',
-        })
-            .then(reaction => {
-                this.state.reactions.push(reaction)
-                this.state.meta.reactions.heart++
-            })
-    }
-
-    unlike() {
-        if (!this.accessToken) return Promise.reject()
-
-
-        const { user, reactions } = this.state
-        const index = reactions.findIndex(reaction => reaction.user.login === user.login)
-        return http.delete(`/reactions/${reactions[index].id}`)
-            .then(() => {
-                reactions.splice(index, 1)
-                this.state.meta.reactions.heart--
-            })
-    }
-
-    likeAComment(commentId) {
-        if (!this.accessToken) {
-            alert('Login to Like')
-            return Promise.reject()
-        }
-
-        const { owner, repo } = this
-        const comment = this.state.comments.find(comment => comment.id === commentId)
-
-        return http.post(`/repos/${owner}/${repo}/issues/comments/${commentId}/reactions`, {
-            content: 'heart',
-        })
-            .then(reaction => {
-                this.state.commentReactions[commentId].push(reaction)
-                comment.reactions.heart++
-            })
-    }
-
-    unlikeAComment(commentId) {
-        if (!this.accessToken) return Promise.reject()
-
-        const reactions = this.state.commentReactions[commentId]
-        const comment = this.state.comments.find(comment => comment.id === commentId)
-        const { user } = this.state
-        const index = reactions.findIndex(reaction => reaction.user.login === user.login)
-
-        return http.delete(`/reactions/${reactions[index].id}`)
-            .then(() => {
-                reactions.splice(index, 1)
-                comment.reactions.heart--
-            })
-    }
 }
 
 export default Gitment
