@@ -194,136 +194,13 @@ function renderComments({ meta, comments, commentReactions, currentPage, user, e
     return container
 }
 
-function renderEditor({ user, error }, instance) {
-    const container = document.createElement('div')
-    container.lang = "en-US"
-    container.className = 'gitment-container gitment-editor-container'
-
-    const shouldDisable = user.login && !error ? '' : 'disabled'
-    const disabledTip = user.login ? '' : 'Login to Comment'
-    container.innerHTML = `
-      ${ user.login
-        ? `<a class="gitment-editor-avatar" href="${user.html_url}" target="_blank">
-            <img class="gitment-editor-avatar-img" src="${user.avatar_url}"/>
-          </a>`
-        : user.isLoggingIn
-            ? `<div class="gitment-editor-avatar">${spinnerIcon}</div>`
-            : `<a class="gitment-editor-avatar" href="${instance.loginLink}" title="login with GitHub">
-              ${githubIcon}
-            </a>`
-        }
-    </a>
-    <div class="gitment-editor-main">
-      <div class="gitment-editor-header">
-        <nav class="gitment-editor-tabs">
-          <button class="gitment-editor-tab gitment-selected">Write</button>
-          <button class="gitment-editor-tab">Preview</button>
-        </nav>
-        <div class="gitment-editor-login">
-          ${ user.login
-        ? '<a class="gitment-editor-logout-link">Logout</a>'
-        : user.isLoggingIn
-            ? 'Logging in...'
-            : `<a class="gitment-editor-login-link" href="${instance.loginLink}">Login</a> with GitHub`
-        }
-        </div>
-      </div>
-      <div class="gitment-editor-body">
-        <div class="gitment-editor-write-field">
-          <textarea placeholder="Leave a comment" title="${disabledTip}" ${shouldDisable}></textarea>
-        </div>
-        <div class="gitment-editor-preview-field gitment-hidden">
-          <div class="gitment-editor-preview markdown-body"></div>
-        </div>
-      </div>
-    </div>
-    <div class="gitment-editor-footer">
-      <div class="flash flash-warn">
-            <p><a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-        请使用<strong>markdown</strong>进行书写。
-      </a></p>
-        <p>没必要进行xss尝试，因为这个一个全静态的网站。</p>
-        <p>由于github的缓存的原因，你的评论可能需要几秒钟之后才会显示在这里</p>
-      </div>
-      <button class="gitment-editor-submit mt-4" title="${disabledTip}" ${shouldDisable}>Comment</button>
-    </div>
-  `
-    if (user.login) {
-        container.querySelector('.gitment-editor-logout-link').onclick = () => instance.logout()
-    }
-
-    const writeField = container.querySelector('.gitment-editor-write-field')
-    const previewField = container.querySelector('.gitment-editor-preview-field')
-
-    const textarea = writeField.querySelector('textarea')
-    textarea.oninput = () => {
-        textarea.style.height = 'auto'
-        const style = window.getComputedStyle(textarea, null)
-        const height = parseInt(style.height, 10)
-        const clientHeight = textarea.clientHeight
-        const scrollHeight = textarea.scrollHeight
-        if (clientHeight < scrollHeight) {
-            textarea.style.height = (height + scrollHeight - clientHeight) + 'px'
-        }
-    }
-
-    const [writeTab, previewTab] = container.querySelectorAll('.gitment-editor-tab')
-    writeTab.onclick = () => {
-        writeTab.classList.add('gitment-selected')
-        previewTab.classList.remove('gitment-selected')
-        writeField.classList.remove('gitment-hidden')
-        previewField.classList.add('gitment-hidden')
-
-        textarea.focus()
-    }
-    previewTab.onclick = () => {
-        previewTab.classList.add('gitment-selected')
-        writeTab.classList.remove('gitment-selected')
-        previewField.classList.remove('gitment-hidden')
-        writeField.classList.add('gitment-hidden')
-
-        const preview = previewField.querySelector('.gitment-editor-preview')
-        const content = textarea.value.trim()
-        if (!content) {
-            preview.innerText = 'Nothing to preview'
-            return
-        }
-
-        preview.innerText = 'Loading preview...'
-        instance.markdown(content)
-            .then(html => preview.innerHTML = html)
-    }
-
-    const submitButton = container.querySelector('.gitment-editor-submit')
-    submitButton.onclick = () => {
-        submitButton.innerText = 'Submitting...'
-        submitButton.setAttribute('disabled', true)
-        instance.post(textarea.value.trim())
-            .then(data => {
-                textarea.value = ''
-                textarea.style.height = 'auto'
-                submitButton.removeAttribute('disabled')
-                submitButton.innerText = 'Comment'
-            })
-            .catch(e => {
-                alert(e)
-                submitButton.removeAttribute('disabled')
-                submitButton.innerText = 'Comment'
-            })
-    }
-
-    return container
-}
-
-
 function render(state, instance) {
     const container = document.createElement('div')
     container.lang = "en-US"
     container.className = 'col-12 col-md-12'
     container.appendChild(instance.renderHeader(state, instance))
     container.appendChild(instance.renderComments(state, instance))
-    container.appendChild(instance.renderEditor(state, instance))
     return container
 }
 
-export default { render, renderHeader, renderComments, renderEditor}
+export default { render, renderHeader, renderComments }
