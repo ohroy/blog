@@ -6,36 +6,11 @@ function renderHeader({ meta, user, reactions }, instance) {
     container.lang = "en-US"
     container.className = 'gitment-container gitment-header-container'
 
-    const likeButton = document.createElement('span')
-    const likedReaction = reactions.find(reaction => (
-        reaction.content === 'heart' && reaction.user.login === user.login
-    ))
-    likeButton.className = 'gitment-header-like-btn'
-    likeButton.innerHTML = `
-    ${heartIcon}
-    ${ likedReaction
-        ? 'Unlike'
-        : 'Like'
-        }
-    ${ meta.reactions && meta.reactions.heart
-        ? ` • <strong>${meta.reactions.heart}</strong> Liked`
-        : ''
-        }
-  `
-
-    if (likedReaction) {
-        likeButton.classList.add('liked')
-        likeButton.onclick = () => instance.unlike()
-    } else {
-        likeButton.classList.remove('liked')
-        likeButton.onclick = () => instance.like()
-    }
-    container.appendChild(likeButton)
 
     const commentsCount = document.createElement('span')
     commentsCount.innerHTML = `
     ${ meta.comments
-        ? ` • <strong>${meta.comments}</strong> Comments`
+        ? ` Total <strong>${meta.comments}</strong> Comments`
         : ''
         }
   `
