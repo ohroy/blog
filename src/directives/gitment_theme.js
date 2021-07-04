@@ -87,23 +87,10 @@ function renderComments({ meta, comments, commentReactions, currentPage, user, e
             ? ` • <span title="comment was edited at ${updateDate}">edited</span>`
             : ''
             }
-          <div class="gitment-comment-like-btn">${heartIcon} ${comment.reactions.heart || ''}</div>
         </div>
         <div class="gitment-comment-body markdown-body">${comment.body_html}</div>
       </div>
     `
-        const likeButton = commentItem.querySelector('.gitment-comment-like-btn')
-        const likedReaction = commentReactions[comment.id]
-            && commentReactions[comment.id].find(reaction => (
-                reaction.content === 'heart' && reaction.user.login === user.login
-            ))
-        if (likedReaction) {
-            likeButton.classList.add('liked')
-            likeButton.onclick = () => instance.unlikeAComment(comment.id)
-        } else {
-            likeButton.classList.remove('liked')
-            likeButton.onclick = () => instance.likeAComment(comment.id)
-        }
 
         // dirty
         // use a blank image to trigger height calculating when element rendered
