@@ -7,7 +7,7 @@ name: github_page ci
 on:
   push:
     tags:
-      - *
+      - '*'
     #branches: [ master ]
   pull_request:
     branches: [ master ]
