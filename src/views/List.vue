@@ -10,12 +10,14 @@
           <p>{{ tip.tip }}</p>
           <div class="menu">
             <a target="_blank" href="https://github.com/rozbo">
-              <ali-icon width="22" height="22" icon-name="github"><icon-github /></ali-icon>
+              <ali-icon width="22" height="22" icon-name="github" icon-color="#F75280"><icon-github /></ali-icon>
             </a>
             <a href="/37">
               <ali-icon width="22" height="22" icon-name="donate"><icon-donate /></ali-icon>
             </a>
-
+            <a href="/52">
+              <ali-icon width="22" height="22" icon-name="me" icon-color="#F75280"><icon-me /></ali-icon>
+            </a>
           </div>
         </div>
       <div v-if="loadOk"  id="posts">
@@ -42,7 +44,7 @@ import { date_format } from "@/helpers/utils";
 import {defineComponent} from "vue";
 import { getList } from '@/helpers/api'
 import Footer from "@/components/Footer.vue";
-import IconMoon from "@/components/icons/IconMoon.vue";
+import IconMe from "@/components/icons/IconMe.vue";
 import IconDonate from "@/components/icons/IconDonate.vue";
 import IconGithub from "@/components/icons/IconGithub.vue";
 import IconBase from "@/components/IconBase.vue";
@@ -53,6 +55,7 @@ export default defineComponent({
     Footer,
     // IconBase,
     // IconMoon,
+    IconMe,
     AliIcon,
     IconGithub,
     IconDonate,

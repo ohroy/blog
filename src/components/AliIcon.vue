@@ -4,6 +4,7 @@
        :height="height"
        viewBox="0 0 1024 1024"
        :aria-labelledby="iconName"
+       :style="{fill:iconColor}"
   >
     <title :id="iconName" lang="en">{{iconName}}</title>
     <slot />
@@ -30,7 +31,7 @@
       },
       iconColor: {
         type: String,
-        default: 'currentColor'
+        default: ''
       }
     }
   });
