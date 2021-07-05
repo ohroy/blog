@@ -15,7 +15,7 @@
             <a href="/sponsor">
               <ali-icon width="22" height="22" icon-name="donate"><icon-donate /></ali-icon>
             </a>
-            <a href="/52">
+            <a href="/about">
               <ali-icon width="22" height="22" icon-name="me" icon-color="#F75280"><icon-me /></ali-icon>
             </a>
           </div>
