@@ -36,8 +36,7 @@
       --border-alpha: max(0,min(calc((var(--perceived-lightness) - var(--border-threshold))*100),1));
       margin: 0 3px;
       font-size: 13px;
-      border: 1px solid #e1e1e1;
-      border-radius: 3px;
+      border-radius: 2px;
       padding: 1px 6px 3px;
       --perceived-lightness: calc((var(--label-r)*0.2126 + var(--label-g)*0.7152 + var(--label-b)*0.0722)/255);
       --lightness-switch: max(0,min(calc((var(--perceived-lightness) - var(--lightness-threshold))*-1000),1));
