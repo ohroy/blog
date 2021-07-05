@@ -1,3 +1,13 @@
+#comments:before{
+    display: block;
+    width: 30%;
+    content: '';
+    height: 1px;
+    background: #f1f1f1;
+    margin: 50px auto;
+}
+
+
 .gitment-container {
     font-family: sans-serif;
     font-size: 14px;
