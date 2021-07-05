@@ -12,7 +12,7 @@
             <a target="_blank" href="https://github.com/rozbo">
               <ali-icon width="22" height="22" icon-name="github" icon-color="#F75280"><icon-github /></ali-icon>
             </a>
-            <a href="/37">
+            <a href="/sponsor">
               <ali-icon width="22" height="22" icon-name="donate"><icon-donate /></ali-icon>
             </a>
             <a href="/52">
