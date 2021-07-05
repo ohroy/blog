@@ -46,10 +46,10 @@
     cursor: pointer;
 
     &:hover path {
-      fill: #5c646b;
+      fill: darken(#F75280, 20%);
     }
     path {
-      fill: #949fa9;
+      fill: #F75280;
     }
   }
 
