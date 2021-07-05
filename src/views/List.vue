@@ -8,9 +8,17 @@
           </a>
           <h1>{{profile.login}}</h1>
           <p>{{ tip.tip }}</p>
+          <div class="menu">
+            <a target="_blank" href="https://github.com/rozbo">
+              <ali-icon width="22" height="22" icon-name="github"><icon-github /></ali-icon>
+            </a>
+            <a href="/37">
+              <ali-icon width="22" height="22" icon-name="donate"><icon-donate /></ali-icon>
+            </a>
+
+          </div>
         </div>
       <div v-if="loadOk"  id="posts">
-
               <router-link class="post" :to="'/detail/'+item.number" v-for="item in details"
                            v-bind:key="item.id">
                 <h2>{{ item.title }}</h2>
@@ -34,14 +42,25 @@ import { date_format } from "@/helpers/utils";
 import {defineComponent} from "vue";
 import { getList } from '@/helpers/api'
 import Footer from "@/components/Footer.vue";
-
+import IconMoon from "@/components/icons/IconMoon.vue";
+import IconDonate from "@/components/icons/IconDonate.vue";
+import IconGithub from "@/components/icons/IconGithub.vue";
+import IconBase from "@/components/IconBase.vue";
+import AliIcon from "@/components/AliIcon.vue";
 export default defineComponent({
   name: "List",
-  components: {Footer},
+  components: {
+    Footer,
+    // IconBase,
+    // IconMoon,
+    AliIcon,
+    IconGithub,
+    IconDonate,
+  },
   loadOl:false,
   items:[],
   status: "Loading...",
-  loadingClass: "iconfont icon-loading if-spin if-3x if-main",
+  loadingClass: "iconfont icons-loading if-spin if-3x if-main",
   title: config.site.name,
   tip: {
     tip: "时光带有了一切，却唯独留下了我。",
@@ -52,7 +71,7 @@ export default defineComponent({
       loadOk: false,
       items:[] as any,
       status: "Loading...",
-      loadingClass: "iconfont icon-loading if-spin if-3x if-main",
+      loadingClass: "iconfont icons-loading if-spin if-3x if-main",
       title: config.site.name,
       tip: {
         tip: "时光带有了一切，却唯独留下了我。",
@@ -74,7 +93,7 @@ export default defineComponent({
         },
         res => {
           this.status = `Error:${res.statusText}`;
-          this.loadingClass = "iconfont icon-loading if-3x if-main";
+          this.loadingClass = "iconfont icons-loading if-3x if-main";
         }
     );
     Tip.getHitokoto().then(res => {

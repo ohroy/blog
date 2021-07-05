@@ -41,9 +41,29 @@
     line-height: 1.4;
     margin: 14px 20px 0px;
   }
-  p:after {
+
+  .menu a{
+    @media (max-width: 800px) {
+      margin: 16px 6px 10px;
+    }
+
+    display: inline-block;
+    margin: 20px 8px 20px;
+  }
+  svg {
+    @media (max-width: 800px) {
+      width: 18px;
+      height: 18px;
+    }
+
     display: block;
-    margin: 16px auto;
+    width: 22px;
+    height: 22px;
+  }
+
+  .menu:after {
+    display: block;
+    margin: 0 auto;
     width: 50%;
     content: '';
     height: 1px;
