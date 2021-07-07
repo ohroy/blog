@@ -1,8 +1,6 @@
 
 ## A blog based on github issue
 
-[![github_page ci](https://github.com/rozbo/blog/actions/workflows/github_page.yml/badge.svg)](https://github.com/rozbo/blog/actions/workflows/github_page.yml)
-
 ## usage
 
 fork this project and change the `config.js` to your own github username and repo.
