@@ -1,3 +1,6 @@
+@import "var";
+
+
 #post {
   & > p {
     font-size: 14px;
@@ -46,10 +49,10 @@
     cursor: pointer;
 
     &:hover path {
-      fill: darken(#F75280, 20%);
+      fill: darken($main-color, 20%);
     }
     path {
-      fill: #F75280;
+      fill: $main-color;
     }
   }
 
