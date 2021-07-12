@@ -9,6 +9,10 @@
           <p>write at<span> {{ createAt }}</span>, by
             <span>
                 {{ detail.user.login }}</span>
+        <template v-if="detail.labels.length>0">
+          , and tag with
+          <template v-bind:style="label.style" v-for="label in detail.labels" :key="label.id"> #{{ label.name }}</template>
+        </template>
           </p>
         <div ref="markdown_body" class="markdown-body" v-html="detail.body_html"></div>
       </div>
