@@ -1,6 +1,7 @@
 import {http} from "@/helpers/utils";
 import { config } from "@/config";
 let listCache:Array<any> = [];
+const itemsCache:any = {};
 const author = config.user.name;
 const githubURl = "/repos/" + author + "/" + config.user.repo + "/issues";
 import {RGB} from "@/helpers/color"
@@ -48,3 +49,19 @@ export function getList():Promise<Array<any>> {
     }, reject);
   });
 }
+
+
+export function getDetail(id):any{
+  return new Promise((resolve, reject) => {
+    if (itemsCache[id]) {
+      console.log("bycache");
+      resolve(itemsCache[id]);
+    } else {
+      http.get(githubURl + "/" + id).then((response) => {
+        itemsCache[id] = response;
+        console.log("by get ---");
+        resolve(itemsCache[id]);
+      }, reject);
+    }
+  });
+};

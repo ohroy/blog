@@ -72,7 +72,7 @@ export default defineComponent({
   data() {
     return {
       loadOk: false,
-      items:[] as any,
+      items:[] as any[],
       status: "Loading...",
       loadingClass: "iconfont icons-loading if-spin if-3x if-main",
       title: config.site.name,
@@ -110,7 +110,7 @@ export default defineComponent({
     createAt():string {
       return date_format(this.detail.created_at);
     },
-    details: function ():[] {
+    details: function ():any[] {
       return this.items;
     }
   },

@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import envCompatible from 'vite-plugin-env-compatible';
 import { injectHtml } from 'vite-plugin-html';
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+// import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,11 +28,16 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    viteCommonjs(),
+    // viteCommonjs(),
     envCompatible(),
     injectHtml()
   ],
+  server: {
+    watch:{
+      usePolling: true
+    }
+  },
   build: {
     rollupOptions: {}
-  }
+  },
 })

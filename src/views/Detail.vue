@@ -32,7 +32,7 @@
 <script lang="ts">
 import "../style/gitment.scss";
 import "../style/toc.scss";
-import { github }  from "../helpers/github";
+import { getDetail }  from "../helpers/api";
 import Render from "../helpers/render";
 import Gitment from "../directives/gitment";
 import { date_format } from "@/helpers/utils";
@@ -99,7 +99,7 @@ export default defineComponent({
   },
   created() {
     let flag = this.$route.params.id;
-    github.getDetail(flag).then(
+      getDetail(flag).then(
         res => {
           this.status = "正在解析...";
           this.loading = false;
