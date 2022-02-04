@@ -1,13 +1,13 @@
-import { EventEmitter } from "events";
+
 import { config } from "../config";
-import { http } from "../helpers/utils";
-const github = new EventEmitter();
+import { http } from "./utils";
+
 let itemsCache = Object.create(null);
 const author = config.user.name;
 const githubURl = "/repos/" + author + "/" + config.user.repo + "/issues";
-let listCache = "";
+let listCache:any[];
 
-github.hasLabel = (issues, name) => {
+function hasLabel(issues, name):boolean {
   const lables = issues.labels;
   const now = lables.filter((v) => {
     return v.name === name;
@@ -15,19 +15,19 @@ github.hasLabel = (issues, name) => {
   return now.length > 0;
 };
 
-github.getList = function() {
+async function getList() :Promise<any[]>{
   return new Promise((resolve, reject) => {
-    if (listCache != "") {
+    if (listCache != undefined) {
       resolve(listCache);
     }
     http.get(githubURl, { creator: author }).then((response) => {
       const topTopics = [];
       const normalTopics = [];
       response.forEach((v) => {
-        if (github.hasLabel(v, "hidden")) {
+        if (hasLabel(v, "hidden")) {
           return;
         }
-        if (github.hasLabel(v, "top")) {
+        if (hasLabel(v, "top")) {
           v.isTop = true;
           topTopics.push(v);
           return;
@@ -40,7 +40,7 @@ github.getList = function() {
   });
 };
 
-github.getDetail = (id) => {
+const getDetail = (id) => {
   return new Promise((resolve, reject) => {
     if (itemsCache[id]) {
       console.log("bycache");
@@ -48,11 +48,15 @@ github.getDetail = (id) => {
     } else {
       http.get(githubURl + "/" + id).then((response) => {
         itemsCache[id] = response;
-        console.log("by get");
+        console.log("by get ---");
         resolve(itemsCache[id]);
       }, reject);
     }
   });
 };
+export const github  = {
+  getDetail,
+  getList,
+  hasLabel
+}
 
-export { github };

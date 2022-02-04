@@ -32,7 +32,7 @@
 <script lang="ts">
 import "../style/gitment.scss";
 import "../style/toc.scss";
-import { github } from "../helpers/github";
+import { github }  from "../helpers/github";
 import Render from "../helpers/render";
 import Gitment from "../directives/gitment";
 import { date_format } from "@/helpers/utils";
