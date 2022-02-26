@@ -39,7 +39,6 @@ jobs:
     - run: npm run build
     - run: |
         cd dist
-        echo "blog.zz173.com" > CNAME
         cp index.html 404.html
         echo "" > .gitignore
         git init
