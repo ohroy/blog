@@ -28,7 +28,7 @@
     "@vitejs/plugin-vue": "^2.2.2",
     "vite-plugin-env-compatible": "^1.1.1",
     "vite-plugin-html": "3.0.6",
-    "vite": "^2.8.4",
+    "vite": "^2.9.16",
     "vue-tsc": "^0.32.0",
     "sass": "^1.49.9"
   }
